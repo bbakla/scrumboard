@@ -27,4 +27,14 @@ public class ProjectRepoService {
 
 		return repository.findAll();
 	}
+
+	public void updateProject(Long id, Project project) {
+		repository.save(project);
+		
+	}
+
+	public Project findProject(Long id) {
+
+		return repository.findById(id);
+	}
 } 

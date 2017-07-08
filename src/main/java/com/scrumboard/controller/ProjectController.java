@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -18,8 +19,10 @@ import com.scrumboard.domain.model.Project;
 import com.scrumboard.service.ProjectRepoService;
 import com.scrumboard.service.ProjectViewService;
 
+import static com.scrumboard.controller.ViewNames.*;
+
 @Controller
-@RequestMapping("/project")
+@RequestMapping("/projects")
 public class ProjectController {
 	
 	@Autowired
@@ -28,13 +31,38 @@ public class ProjectController {
 	@Autowired
 	ProjectViewService viewService;
 
-	@RequestMapping(value="/", method= RequestMethod.GET)
+	@RequestMapping(value="", method= RequestMethod.GET)
 	public ModelAndView getProjects(Model model) {
 		
 		return viewService.getAllProjects(model);
 	}
 	
-	@RequestMapping(value="/", method= RequestMethod.POST)
+	@RequestMapping(value="/{id}", method= RequestMethod.GET)
+	public ModelAndView getProject(@PathVariable Long id, Model model) {
+		
+		model.addAttribute("project", repoService.findProject(id));
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName(SINGLE_PROJECT_PAGE);
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/{id}", method= RequestMethod.POST)
+	public ModelAndView updateProject(@ModelAttribute Project project, @PathVariable Long id,  RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
+		
+		repoService.updateProject(id, project);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		sessionStatus.setComplete();
+		
+		modelAndView.setViewName(SINGLE_PROJECT_PAGE);
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="", method= RequestMethod.POST)
 	public ModelAndView createProject(@ModelAttribute Project project, RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
 		
 		repoService.createProject(project);
@@ -42,7 +70,7 @@ public class ProjectController {
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();
 		
-		modelAndView.setViewName("redirect:/project/");
+		modelAndView.setViewName(REDIRECT_TO_PROJECTS_PAGE);
 
 		return modelAndView;
 	}

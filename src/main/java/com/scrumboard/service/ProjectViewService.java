@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.scrumboard.domain.model.Project;
 
+import static com.scrumboard.controller.ViewNames.*;
+
 @Service
 public class ProjectViewService {
 	
@@ -18,7 +20,7 @@ public class ProjectViewService {
 		model.addAttribute("project", project);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("new_project");
+		modelAndView.setViewName(PROJECTS_PAGE);
 		
 		model.addAttribute("projects", repoService.getAllProjects());
 		
