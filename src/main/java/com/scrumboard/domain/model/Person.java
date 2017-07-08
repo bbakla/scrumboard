@@ -1,4 +1,4 @@
-package com.scrumboard.domain.task;
+package com.scrumboard.domain.model;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

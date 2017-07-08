@@ -1,4 +1,4 @@
-package com.scrumboard.domain.backlog;
+package com.scrumboard.domain.model;
 
 import java.util.Map;
 import java.util.SortedMap;
@@ -15,8 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.scrumboard.domain.task.Task;
 
 @Entity
 @Table(name = "backlog")

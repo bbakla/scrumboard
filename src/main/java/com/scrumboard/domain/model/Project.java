@@ -1,4 +1,4 @@
-package com.scrumboard.domain.backlog;
+package com.scrumboard.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,12 @@ public class Project {
 	@Column(name="project_id")
     private Long id;
 	
+	@Column
+	private String name;
+	
+	@Column
+	private String description;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="project")
 	private List<Backlog> backlogs = new ArrayList<>();
 	
@@ -34,6 +40,22 @@ public class Project {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Backlog> getBacklogs() {

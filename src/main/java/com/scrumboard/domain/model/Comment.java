@@ -1,6 +1,4 @@
-package com.scrumboard.domain.task;
-
-import com.scrumboard.domain.enumeration.TaskStatus;
+package com.scrumboard.domain.model;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,15 +7,16 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * A ChangeSet.
+ * A Comment.
  */
 @Entity
-@Table(name = "change_set")
+@Table(name = "comment")
 //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ChangeSet implements Serializable {
+public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,27 +24,23 @@ public class ChangeSet implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "changed_date")
-    private LocalDateTime changedDate;
-    
     @NotNull
-    @Column(name = "task_name", nullable = false)
-    private String taskName;
+    @Column(name = "taks_details_id", nullable = false)
+    private String taksDetailsId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private TaskStatus status;
+    @NotNull
+    @Column(name = "written_date", nullable = false)
+    private LocalDateTime writtenDate;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @Column(name = "description")
+    private String description;
+    
+    @ManyToOne
     private TaskDetails taskDetails;
 
     @OneToOne
     @JoinColumn(unique = true)
     private Person person;
-
-    @ManyToOne
-    private TaskHistory taskHistory;
 
     public Long getId() {
         return id;
@@ -55,12 +50,28 @@ public class ChangeSet implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getChangedDate() {
-        return changedDate;
+    public String getTaksDetailsId() {
+        return taksDetailsId;
     }
 
-    public void setChangedDate(LocalDateTime changedDate) {
-        this.changedDate = changedDate;
+    public void setTaksDetailsId(String taksDetailsId) {
+        this.taksDetailsId = taksDetailsId;
+    }
+
+    public LocalDateTime getWrittenDate() {
+        return writtenDate;
+    }
+
+    public void setWrittenDate(LocalDateTime writtenDate) {
+        this.writtenDate = writtenDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Person getPerson() {
@@ -71,36 +82,12 @@ public class ChangeSet implements Serializable {
         this.person = person;
     }
     
-    public String getTaskName() {
-		return taskName;
-	}
-
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
-
-	public TaskStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(TaskStatus status) {
-		this.status = status;
-	}
-
-	public TaskDetails getTaskDetails() {
+    public TaskDetails getTaskDetails() {
 		return taskDetails;
 	}
 
 	public void setTaskDetails(TaskDetails taskDetails) {
 		this.taskDetails = taskDetails;
-	}
-
-	public TaskHistory getTaskHistory() {
-		return taskHistory;
-	}
-
-	public void setTaskHistory(TaskHistory taskHistory) {
-		this.taskHistory = taskHistory;
 	}
 
 	@Override
@@ -111,11 +98,11 @@ public class ChangeSet implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ChangeSet changeSet = (ChangeSet) o;
-        if (changeSet.getId() == null || getId() == null) {
+        Comment comment = (Comment) o;
+        if (comment.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), changeSet.getId());
+        return Objects.equals(getId(), comment.getId());
     }
 
     @Override
@@ -125,9 +112,11 @@ public class ChangeSet implements Serializable {
 
     @Override
     public String toString() {
-        return "ChangeSet{" +
+        return "Comment{" +
             "id=" + getId() +
-            ", changedDate='" + getChangedDate() + "'" +
+            ", taksDetailsId='" + getTaksDetailsId() + "'" +
+            ", writtenDate='" + getWrittenDate() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

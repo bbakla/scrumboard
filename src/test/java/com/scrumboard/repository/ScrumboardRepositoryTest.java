@@ -14,7 +14,7 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.annotations.BeforeMethod;
 
 import com.scrumboard.config.JpaTestConfiguration;
-import com.scrumboard.domain.task.Task;
+import com.scrumboard.domain.model.Task;
 
 import static com.scrumboard.helper.SampleDataCreator.*;
 

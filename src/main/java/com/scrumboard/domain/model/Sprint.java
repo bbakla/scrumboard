@@ -1,4 +1,4 @@
-package com.scrumboard.domain.backlog;
+package com.scrumboard.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.scrumboard.domain.task.Task;
 
 
 @Entity

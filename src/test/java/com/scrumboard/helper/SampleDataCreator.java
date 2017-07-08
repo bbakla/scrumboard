@@ -9,16 +9,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.scrumboard.domain.backlog.Backlog;
-import com.scrumboard.domain.backlog.Project;
-import com.scrumboard.domain.backlog.Sprint;
 import com.scrumboard.domain.enumeration.TaskStatus;
-import com.scrumboard.domain.task.ChangeSet;
-import com.scrumboard.domain.task.Comment;
-import com.scrumboard.domain.task.Person;
-import com.scrumboard.domain.task.Task;
-import com.scrumboard.domain.task.TaskDetails;
-import com.scrumboard.domain.task.TaskHistory;
+import com.scrumboard.domain.model.Backlog;
+import com.scrumboard.domain.model.ChangeSet;
+import com.scrumboard.domain.model.Comment;
+import com.scrumboard.domain.model.Person;
+import com.scrumboard.domain.model.Project;
+import com.scrumboard.domain.model.Sprint;
+import com.scrumboard.domain.model.Task;
+import com.scrumboard.domain.model.TaskDetails;
+import com.scrumboard.domain.model.TaskHistory;
 
 import static com.scrumboard.helper.Constants.*;
 

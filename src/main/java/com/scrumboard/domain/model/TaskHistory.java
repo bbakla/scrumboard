@@ -1,4 +1,4 @@
-package com.scrumboard.domain.task;
+package com.scrumboard.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
