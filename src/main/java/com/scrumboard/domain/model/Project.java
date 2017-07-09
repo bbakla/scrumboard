@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.Spring;
 
 @Entity
 @Table(name="Project")
@@ -72,6 +73,22 @@ public class Project {
 
 	public void setSprints(List<Sprint> sprints) {
 		this.sprints = sprints;
+	}
+	
+	public void addBacklog(Backlog backlog) {
+		backlogs.add(backlog);
+	}
+	
+	public void removeBacklog(Backlog backlog) {
+		backlogs.remove(backlog);
+	}
+	
+	public void addSprint(Sprint sprint) {
+		sprints.add(sprint);
+	}
+	
+	public void removeSpring(Sprint sprint) {
+		sprints.remove(sprint);
 	}
 	
 }

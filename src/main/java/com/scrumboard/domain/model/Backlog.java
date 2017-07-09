@@ -29,18 +29,18 @@ public class Backlog {
 
 	@ElementCollection(targetClass= Task.class, fetch=FetchType.EAGER)
 	@CollectionTable(name="backlog_tasks", joinColumns=@JoinColumn(name="backlog_task_id"))
-	private Map<String, Task> backlog = new TreeMap<>();
+	private Map<String, Task> tasks = new TreeMap<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="project_id")
 	private Project project;
 
 	public void addTaskToBacklog(Task task) {
-		backlog.put(task.getTaskId(), task);
+		tasks.put(task.getTaskId(), task);
 	}
 	
 	public void removeTaskFromBacklog(Task task) {
-		backlog.remove(task.getId(), task);
+		tasks.remove(task.getId(), task);
 	}
 	
 	public Long getId() {
@@ -60,11 +60,11 @@ public class Backlog {
 	}
 
 	public Map<String, Task> getBacklog() {
-		return backlog;
+		return tasks;
 	}
 
 	public void setBacklog(Map<String, Task> backlog) {
-		this.backlog = backlog;
+		this.tasks = backlog;
 	}
 
 	public Project getProject() {
