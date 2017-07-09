@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
 import com.scrumboard.repository.ProjectRepository;
 
@@ -31,5 +32,15 @@ public class ProjectRepoService {
 	public Project findProject(Long id) {
 
 		return repository.findById(id);
+	}
+
+	public Backlog findBacklog(Long projectId, Long backlogId) {
+
+		return repository.findById(projectId)
+				  .getBacklogs()
+				  .stream()
+				  .filter(backlog -> backlog.getId() == backlogId)
+				  .findAny().get();
+				  
 	}
 } 

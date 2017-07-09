@@ -26,7 +26,7 @@ public class BacklogController {
 	private ProjectRepoService projectRepoService;
 	
 	@RequestMapping(value = "/{projectId}/backlog", method = RequestMethod.GET)
-	public ModelAndView getBacklog(@PathVariable("projectId") Long projectId, Model model) {
+	public ModelAndView getBacklogByProjectId(@PathVariable("projectId") Long projectId, Model model) {
 		
 		Project project = projectRepoService.findProject(projectId);
 		
@@ -38,18 +38,21 @@ public class BacklogController {
 
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/{projectId}/backlog/{backlogId}", method = RequestMethod.GET)
+	public ModelAndView getBacklogByBacklogId(@PathVariable("projectId") Long projectId,
+											  @PathVariable("backlogId") Long backlogId, Model model) {
+		
+		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
+		
+		model.addAttribute("backlog", backlog);
+		model.addAttribute("projectName", backlog.getProject().getName());
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(BACKLOG_PAGE);
 
-//	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//	public ModelAndView getBacklog(@PathVariable Long id, Model model) {
-//
-//		model.addAttribute("project", repoService.findProject(id));
-//
-//		ModelAndView modelAndView = new ModelAndView();
-//
-//		modelAndView.setViewName(SINGLE_PROJECT_PAGE);
-//
-//		return modelAndView;
-//	}
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/{projectId}/backlog", method = RequestMethod.POST)
 	public ModelAndView createBacklog(@PathVariable("projectId") Long projectId, @ModelAttribute Backlog backlog, 

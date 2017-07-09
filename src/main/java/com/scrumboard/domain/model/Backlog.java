@@ -1,7 +1,6 @@
 package com.scrumboard.domain.model;
 
 import java.util.Map;
-import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.persistence.CollectionTable;
