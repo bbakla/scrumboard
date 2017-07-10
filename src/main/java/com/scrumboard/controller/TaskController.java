@@ -25,6 +25,7 @@ public class TaskController {
 	@Autowired
 	private ProjectRepoService projectRepoService;
 	
+	
 	@RequestMapping(value="/{projectId}/backlog/{backlogId}/task", method=RequestMethod.GET)
 	public ModelAndView getTasks(@PathVariable("projectId") Long projectId, 
 						   @PathVariable("backlogId") Long backlogId, Model model) {
@@ -50,12 +51,16 @@ public class TaskController {
 		Project project = projectRepoService.findProject(projectId);
 		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
 		
+		backlog.addTaskToBacklog(projectRepoService.saveTask(task));
 		backlog.addTaskToBacklog(task);
 		
 		projectRepoService.updateProject(projectId, project);
+
+		model.addAttribute("backlog", backlog);
+		model.addAttribute("project", project);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(SINGLE_TASK_PAGE);
+		modelAndView.setViewName(BACKLOG_PAGE);
 		
 		return modelAndView;
 	}

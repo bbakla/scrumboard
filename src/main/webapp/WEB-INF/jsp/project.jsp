@@ -61,7 +61,7 @@
 
 							</div>
 
-							<form:button name="Update" class="btn btn-primary">Create</form:button>
+							<form:button name="Update" class="btn btn-primary">Update</form:button>
 							<form:button name="Cancel" class="btn btn-primary">Cancel</form:button>
 						</form:form>
 						<br />

@@ -58,7 +58,7 @@
 								</thead>
 
 								<tbody>
-									<c:forEach items="${tasks}" var="task">
+									<c:forEach items="${backlog.tasks}" var="task">
 										<tr>
 											<td><input type="checkbox" class="checkthis" /></td>
 											<td>${task.key}</td>

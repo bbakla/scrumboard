@@ -43,7 +43,6 @@ public class SampleDataCreator {
 		task.setStartedDate(LocalDateTime.now());
 		task.setTaskDetails(createTaskDetails());
 		task.setTaskName(ANY_TASK_NAME);
-		task.setTaskId(ANY_TASK_ID);
 		
 		return task;
 	}

@@ -30,21 +30,17 @@ public class Task implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "task_id", nullable = false)
-    private String taskId;
-
-    @NotNull
     @Column(name = "task_name", nullable = false)
     private String taskName;
 
     @Column(name = "created_date")
-    private transient LocalDateTime createdDate;
+    private LocalDateTime createdDate;
     
     @Column(name = "started_date")
-    private transient LocalDateTime startedDate;
+    private LocalDateTime startedDate;
     
     @Column(name = "last_update")
-    private transient LocalDateTime lastUpdate;
+    private LocalDateTime lastUpdate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -70,13 +66,6 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
 
     public String getTaskName() {
         return taskName;
@@ -168,7 +157,6 @@ public class Task implements Serializable {
     public String toString() {
         return "Task{" +
             "id=" + getId() +
-            ", taskId='" + getTaskId() + "'" +
             ", taskName='" + getTaskName() + "'" +
             ", startedDate='" + getStartedDate() + "'" +
             ", status='" + getStatus() + "'" +

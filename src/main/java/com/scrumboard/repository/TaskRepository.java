@@ -7,7 +7,7 @@ import com.scrumboard.domain.model.Project;
 import com.scrumboard.domain.model.Task;
 
 @Repository
-public interface BacklogRepository<T extends Project> extends JpaRepository<T, Long>{
+public interface TaskRepository<T extends Task> extends JpaRepository<T, Long>{
 
 	T findById(Long id);
 	

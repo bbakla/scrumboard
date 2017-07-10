@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
+import com.scrumboard.domain.model.Task;
 import com.scrumboard.repository.ProjectRepository;
+import com.scrumboard.repository.TaskRepository;
 
 @Service
 public class ProjectRepoService {
 
 	@Autowired
 	private ProjectRepository<Project> repository;
+	
+	@Autowired
+	private TaskRepository<Task> taskRepository;
 	
 	public void createProject(Project project) {
 		repository.save(project);
@@ -25,13 +30,17 @@ public class ProjectRepoService {
 	}
 
 	public void updateProject(Long id, Project project) {
-		repository.save(project);
+		repository.saveAndFlush(project);
 		
 	}
 
 	public Project findProject(Long id) {
 
 		return repository.findById(id);
+	}
+	
+	public Task saveTask(Task task) {
+		return taskRepository.save(task);
 	}
 
 	public Backlog findBacklog(Long projectId, Long backlogId) {

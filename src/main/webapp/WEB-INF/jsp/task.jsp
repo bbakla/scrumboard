@@ -84,7 +84,7 @@
 					</div>
 					
 
-					<form:button name="Create" class="btn btn-primary">Create</form:button>
+					<form:button name="Create" class="btn btn-primary">Create task</form:button>
 				</form:form>
 				<br />
 			</div>
