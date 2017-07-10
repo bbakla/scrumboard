@@ -119,7 +119,7 @@ public class SampleDataCreator {
 		Set<Comment> comments = new HashSet<>();
 		Comment comment = new Comment();
 		comment.setDescription(ANY_COMMENT_DESCRIPTION);
-		comment.setPerson(createPerson());
+		comment.setAuthor(createPerson());
 		comment.setWrittenDate(LocalDateTime.now());
 
 		comments.add(comment);

@@ -1,14 +1,10 @@
 package com.scrumboard.domain.model;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Objects;
 
 /**
  * A Comment.
@@ -27,11 +23,14 @@ public class Comment implements Serializable {
     @NotNull
     @Column(name = "taks_details_id", nullable = false)
     private String taksDetailsId;
-
+    
     @NotNull
     @Column(name = "written_date", nullable = false)
     private LocalDateTime writtenDate;
 
+    @Column
+    private String title;
+    
     @Column(name = "description")
     private String description;
     
@@ -40,7 +39,7 @@ public class Comment implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Person person;
+    private Person author;
 
     public Long getId() {
         return id;
@@ -74,12 +73,12 @@ public class Comment implements Serializable {
         this.description = description;
     }
 
-    public Person getPerson() {
-        return person;
+    public Person getAuthor() {
+        return author;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setAuthor(Person person) {
+        this.author = person;
     }
     
     public TaskDetails getTaskDetails() {
@@ -89,28 +88,16 @@ public class Comment implements Serializable {
 	public void setTaskDetails(TaskDetails taskDetails) {
 		this.taskDetails = taskDetails;
 	}
+	
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Comment comment = (Comment) o;
-        if (comment.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), comment.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
-
-    @Override
     public String toString() {
         return "Comment{" +
             "id=" + getId() +

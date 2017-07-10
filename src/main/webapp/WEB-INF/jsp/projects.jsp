@@ -31,8 +31,7 @@
 							</div>
 							<div class="form-group">
 								<label for="description" class="col-2 col-form-label">Description</label>
-								<form:input path="description" id="description"
-									class="form-control" />
+								<form:input path="description" id="description" class="form-control" />
 							</div>
 
 							<form:button name="Create"

@@ -31,7 +31,7 @@ public class BacklogController {
 		Project project = projectRepoService.findProject(projectId);
 		
 		model.addAttribute("backlog", new Backlog());
-		model.addAttribute("projectName", project.getName());
+		model.addAttribute("project", project);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(BACKLOG_PAGE);
@@ -46,7 +46,7 @@ public class BacklogController {
 		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
 		
 		model.addAttribute("backlog", backlog);
-		model.addAttribute("projectName", backlog.getProject().getName());
+		model.addAttribute("project", backlog.getProject());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(BACKLOG_PAGE);

@@ -37,8 +37,14 @@ public class Task implements Serializable {
     @Column(name = "task_name", nullable = false)
     private String taskName;
 
+    @Column(name = "created_date")
+    private transient LocalDateTime createdDate;
+    
     @Column(name = "started_date")
-    private LocalDateTime startedDate;
+    private transient LocalDateTime startedDate;
+    
+    @Column(name = "last_update")
+    private transient LocalDateTime lastUpdate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -54,7 +60,6 @@ public class Task implements Serializable {
 
     @ManyToMany(mappedBy = "tasks")
     @JsonIgnore
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Person> responsibles = new HashSet<>();
 
     public Long getId() {
@@ -138,28 +143,28 @@ public class Task implements Serializable {
     public void setResponsibles(Set<Person> people) {
         this.responsibles = people;
     }
+    
+    public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Task task = (Task) o;
-        if (task.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), task.getId());
-    }
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+	public LocalDateTime getLastUpdate() {
+		return lastUpdate;
+	}
 
-    @Override
+	public void setLastUpdate(LocalDateTime lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
     public String toString() {
         return "Task{" +
             "id=" + getId() +

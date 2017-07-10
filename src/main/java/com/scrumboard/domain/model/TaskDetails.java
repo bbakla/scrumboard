@@ -30,7 +30,6 @@ public class TaskDetails implements Serializable {
 
     @OneToMany(mappedBy = "taskDetails")
     @JsonIgnore
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comment> comments = new HashSet<>();
 
     public Long getId() {

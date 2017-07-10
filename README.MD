@@ -5,7 +5,6 @@ ENDPOINTS
 * http://localhost:8080/projects                                     POST, GET
 * http://localhost:8080/projects/1/                                  GET
 
-
 TO BE DONE
 -----------------------------------------
 * task addition to the backlog
