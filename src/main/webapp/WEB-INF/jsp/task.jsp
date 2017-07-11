@@ -37,6 +37,11 @@
 					</div>
 
 					<div class="form-group">
+						<label for="taskName" class="col-2 col-form-label">Task id</label>
+						<form:input path="id" id="taskId" class="form-control" readonly="true"/>
+					</div>
+					
+					<div class="form-group">
 						<label for="taskName" class="col-2 col-form-label">Task
 							name</label>
 						<form:input path="taskName" id="taskName" class="form-control" />

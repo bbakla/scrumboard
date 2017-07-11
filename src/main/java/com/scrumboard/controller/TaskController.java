@@ -15,6 +15,7 @@ import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
 import com.scrumboard.domain.model.Task;
 import com.scrumboard.service.ProjectRepoService;
+import com.scrumboard.service.ProjectTaskService;
 
 import static com.scrumboard.controller.ViewNames.*;
 
@@ -24,6 +25,9 @@ public class TaskController {
 	
 	@Autowired
 	private ProjectRepoService projectRepoService;
+	
+	@Autowired
+	private ProjectTaskService taskService;
 	
 	
 	@RequestMapping(value="/{projectId}/backlog/{backlogId}/task", method=RequestMethod.GET)
@@ -54,6 +58,28 @@ public class TaskController {
 		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
 		
 		Task task = projectRepoService.findTaskById(taskId);
+		
+		model.addAttribute("task", task);
+		model.addAttribute("project", project);
+		model.addAttribute("backlog", backlog);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(SINGLE_TASK_PAGE);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/{projectId}/backlog/{backlogId}/task/{taskId}", method=RequestMethod.POST)
+	public ModelAndView updateTask(@PathVariable("projectId") Long projectId,
+									@ModelAttribute Task task,
+						   			@PathVariable("backlogId") Long backlogId, 
+						   			@PathVariable("taskId") Long taskId,
+						   			Model model) {
+				Project project = projectRepoService.findProject(projectId);
+		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
+		
+		taskService.updateTask(task);
+		
 		
 		model.addAttribute("task", task);
 		model.addAttribute("project", project);
