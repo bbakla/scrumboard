@@ -92,15 +92,15 @@
 	
 	
 		<div class="container">
-		<div class="row well col-md-11">
-				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
-					data-target="#projectRecord" data-whatever="@getbootstrap">
-					<i class="glyphicon glyphicon-plus"> </i> New backlog</button>
-		</div>
 		
 			<div class="col-md-11">
 				<div class="panel panel-default">
-					<div class="panel-heading" id="goalTitle">Backlogs</div>
+					<div class="panel-heading clearfix" id="goalTitle">
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Backlogs</h4>
+						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+					data-target="#projectRecord" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i> New backlog</button>
+					</div>
 					<div class="panel-body">
 
 						<div class="table-responsive">
