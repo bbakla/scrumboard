@@ -7,45 +7,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link href="${pageContext.request.contextPath}/js/bootstrap.js">
-<%-- <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css"> --%>
-<%-- <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"> --%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<script type="text/javascript">
+$('#projectRecord').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var recipient = button.data('whatever') // Extract info from data-* attributes
+
+	  var modal = $(this)
+	  modal.find('.modal-title').text('New message to ' + recipient)
+	  modal.find('.modal-body input').val(recipient)
+	})
+</script>
 
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-11">
-				<div class="panel panel-default">
-					<div class="panel-heading" id="goalTitle">Create the project</div>
-					<div class="panel-body">
-
-						<form:form method="POST" modelAttribute="project">
-							<div class="form-group">
-								<label for="title" class="col-2 col-form-label">Project
-									Name</label>
-								<form:input path="name" id="name" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="description" class="col-2 col-form-label">Description</label>
-								<form:input path="description" id="description" class="form-control" />
-							</div>
-
-							<form:button name="Create"
-								class="btn btn-primary btn-lg  btn-block">Create</form:button>
-						</form:form>
-						<br />
-					</div>
+	<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
+		aria-labelledby="title" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title">New project</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
+				<form:form method="POST" modelAttribute="project">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="title" class="col-2 col-form-label">Project
+								Name</label>
+							<form:input path="name" id="name" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="description" class="col-2 col-form-label">Description</label>
+							<form:input path="description" id="description"
+								class="form-control" />
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<form:button name="Create" class="btn btn-primary">Create</form:button>
+					</div>
+				</form:form>
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="container">
-		<div class="row">
+		<div class="row well col-md-11">
+				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+					data-target="#projectRecord" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i> New project</button>
+		</div>
+		
 			<div class="col-md-11">
 				<div class="panel panel-default">
 					<div class="panel-heading" id="goalTitle">Projects</div>
@@ -57,6 +81,7 @@
 									<th><input type="checkbox" id="checkall" /></th>
 									<th>Id</th>
 									<th>Project name</th>
+									<th>Description</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</thead>
@@ -67,6 +92,7 @@
 											<td><input type="checkbox" class="checkthis" /></td>
 											<td>${project.id}</td>
 											<td><a href="<c:url value='/projects/${project.id}'/>">${project.name}</a></td>
+											<td>${project.description}</td>
 											<td><p title="Edit">
 													<button class="btn btn-primary btn-xs" data-title="Edit"
 														data-toggle="modal" data-target="#edit">
@@ -105,10 +131,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-	<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">

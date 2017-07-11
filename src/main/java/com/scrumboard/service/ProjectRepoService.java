@@ -52,4 +52,8 @@ public class ProjectRepoService {
 				  .findAny().get();
 				  
 	}
+
+	public Task findTaskById(Long taskId) {
+		return taskRepository.findById(taskId);
+	}
 } 

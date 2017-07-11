@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
 
-<title>Create Backlog</title>
+<title>Backlog page</title>
 </head>
 <body>
 	<div class="container">
@@ -30,17 +30,89 @@
 								<form:input path="name" id="name" class="form-control" />
 							</div>
 							
-							<form:button name="Create" class="btn btn-primary">Create backlog</form:button>
+							<form:button name="Create" class="btn btn-primary">Update backlog</form:button>
 						</form:form>
 						<br />
-						 <a href="<c:url value='${backlog.id}/task'/>"
-							class="btn btn-primary btn-lg btn-block">Add task</a>
+<%-- 						 <a href="<c:url value='${backlog.id}/task'/>" --%>
+<!-- 							class="btn btn-primary btn-lg btn-block">Add task</a> -->
 							
 					</div>
 				</div>
 			</div>
 			
+			<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
+		aria-labelledby="title" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title">New task</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form method="POST" action = "/projects/${project.id}/backlog/${backlog.id}/task" modelAttribute="task">
+					<div class="modal-body">
+
+						
+						<div class="form-group">
+								<label for="title" class="col-2 col-form-label">Project
+									Name</label>
+								<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
+						</div>	
+							
+						<div class="form-group">
+							<label for="backlogName" class="col-2 col-form-label">Backlog name</label>
+							<input value="${backlog.name}" id="backlogName" class="form-control"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="taskName" class="col-2 col-form-label">Task name</label>
+							<form:input path="taskName" id="taskName" class="form-control" />
+						</div>
+						
+						<div class="form-group">
+						<label for="startedDate" class="col-2 col-form-label">Started Date</label>
+						<form:input path="startedDate" id="startedDate"
+							class="form-control" />
+					</div>
+
+					<div class="form-group">
+						<label for="startedDate" class="col-2 col-form-label">Created Date</label>
+						<form:input path="createdDate" id="createdDate" class="form-control" />
+					</div>
+
+					<div class="form-group">
+						<label for="startedDate" class="col-2 col-form-label">Last Update</label>
+						<form:input path="lastUpdate" id="lastUpdate"
+							class="form-control" />
+					</div>
+
+					<div class="form-group">
+						<label for="description" class="col-2 col-form-label">Description</label>
+						<form:input path="taskDetails.taskDescription" id="description"
+							class="form-control" />
+					</div>
+						
+					
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<form:button name="Create" class="btn btn-primary">Create</form:button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+			
 				<div class="container">
+					<div class="row well col-md-11">
+				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+					data-target="#projectRecord" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i> Add new task</button>
+		</div>
 		<div class="row">
 			<div class="col-md-11">
 				<div class="panel panel-default">
@@ -62,7 +134,7 @@
 										<tr>
 											<td><input type="checkbox" class="checkthis" /></td>
 											<td>${task.key}</td>
-											<td><a href="<c:url value='/projects/${task.key}'/>">${task.value.taskName}</a></td>
+											<td><a href="<c:url value='${backlog.id}/task/${task.key}'/>">${task.value.taskName}</a></td>
 											<td><p title="Edit">
 													<button class="btn btn-primary btn-xs" data-title="Edit"
 														data-toggle="modal" data-target="#edit">

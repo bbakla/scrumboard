@@ -44,6 +44,27 @@ public class TaskController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/{projectId}/backlog/{backlogId}/task/{taskId}", method=RequestMethod.GET)
+	public ModelAndView getTaskById(@PathVariable("projectId") Long projectId, 
+						   			@PathVariable("backlogId") Long backlogId, 
+						   			@PathVariable("taskId") Long taskId,
+						   			Model model) {
+		
+		Project project = projectRepoService.findProject(projectId);
+		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
+		
+		Task task = projectRepoService.findTaskById(taskId);
+		
+		model.addAttribute("task", task);
+		model.addAttribute("project", project);
+		model.addAttribute("backlog", backlog);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(SINGLE_TASK_PAGE);
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/{projectId}/backlog/{backlogId}/task", method=RequestMethod.POST)
 	public ModelAndView createTask(@PathVariable("projectId") Long projectId, 
 						   @PathVariable("backlogId") Long backlogId, @ModelAttribute Task task, Model model) {
