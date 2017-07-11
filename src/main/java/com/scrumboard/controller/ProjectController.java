@@ -50,9 +50,18 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value="/{id}", method= RequestMethod.POST)
-	public ModelAndView updateProject(@ModelAttribute Project project, @PathVariable Long id,  RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
+	public ModelAndView updateProject(@ModelAttribute Project project, 
+			                          @PathVariable Long id,
+			                          Model model,
+			                          RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
 		
+		Project projectInDatabase = repoService.findProject(id);
+		project.setBacklogs(projectInDatabase.getBacklogs());
+		project.setSprints(projectInDatabase.getSprints());
 		repoService.updateProject(id, project);
+		
+		model.addAttribute("backlog", new Backlog());
+		model.addAttribute("project", project);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();
