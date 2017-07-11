@@ -7,5 +7,5 @@ ENDPOINTS
 
 TO BE DONE
 -----------------------------------------
-* task addition to the backlog
+* task addition to the sprint
 * tasks will have parent-child relationship 

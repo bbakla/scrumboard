@@ -104,9 +104,8 @@
 			</div>
 		</div>
 	</div>
-			
 				<div class="container">
-					<div class="row well col-md-11">
+					<div class="row well well-sm col-md-11">
 				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
 					data-target="#projectRecord" data-whatever="@getbootstrap">
 					<i class="glyphicon glyphicon-plus"> </i> Add new task</button>
