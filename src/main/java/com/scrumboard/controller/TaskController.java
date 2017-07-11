@@ -80,7 +80,6 @@ public class TaskController {
 		
 		taskService.updateTask(task);
 		
-		
 		model.addAttribute("task", task);
 		model.addAttribute("project", project);
 		model.addAttribute("backlog", backlog);
@@ -111,5 +110,4 @@ public class TaskController {
 		
 		return modelAndView;
 	}
-
 }
