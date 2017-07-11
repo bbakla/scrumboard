@@ -55,14 +55,13 @@ public class SampleDataCreator {
 		backlogList.get(0).setProject(project);
 		
 		project.setBacklogs(createBacklogList());
-		project.setSprints(createSprints());
 
 		return project;
 	}
 
 	private static List<Sprint> createSprints() {
 		Sprint sprint = new Sprint();
-		sprint.setSpringName(ANY_SPRINT_NAME);
+		sprint.setSprintName(ANY_SPRINT_NAME);
 		sprint.setTasks(Arrays.asList(createTask()));
 		
 		return Arrays.asList(sprint);

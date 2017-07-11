@@ -57,7 +57,7 @@ public class ProjectController {
 		
 		Project projectInDatabase = repoService.findProject(id);
 		project.setBacklogs(projectInDatabase.getBacklogs());
-		project.setSprints(projectInDatabase.getSprints());
+//		project.setSprints(projectInDatabase.getSprints());
 		repoService.updateProject(id, project);
 		
 		model.addAttribute("backlog", new Backlog());

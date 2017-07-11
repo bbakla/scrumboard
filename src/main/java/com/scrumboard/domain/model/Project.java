@@ -32,9 +32,6 @@ public class Project {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="project")
 	private List<Backlog> backlogs = new ArrayList<>();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="project")
-	private List<Sprint> sprints = new ArrayList<>();
-
 	public Long getId() {
 		return id;
 	}
@@ -67,14 +64,6 @@ public class Project {
 		this.backlogs = backlogs;
 	}
 
-	public List<Sprint> getSprints() {
-		return sprints;
-	}
-
-	public void setSprints(List<Sprint> sprints) {
-		this.sprints = sprints;
-	}
-	
 	public void addBacklog(Backlog backlog) {
 		backlogs.add(backlog);
 	}
@@ -83,12 +72,5 @@ public class Project {
 		backlogs.remove(backlog);
 	}
 	
-	public void addSprint(Sprint sprint) {
-		sprints.add(sprint);
-	}
-	
-	public void removeSpring(Sprint sprint) {
-		sprints.remove(sprint);
-	}
 	
 }

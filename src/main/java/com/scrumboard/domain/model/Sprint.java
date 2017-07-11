@@ -26,7 +26,7 @@ public class Sprint{
 	private Long id;
 	
 	@Column
-	private String springName;
+	private String sprintName;
 	
 	@OneToMany (cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="sprint_tasks", joinColumns=  @JoinColumn(name="sprint_id"),
@@ -34,8 +34,8 @@ public class Sprint{
 	private List<Task> tasks = new ArrayList<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="project_id")
-	private Project project;
+	@JoinColumn(name="backlog_id")
+	private Backlog backlog;
 
 	public Long getId() {
 		return id;
@@ -45,12 +45,12 @@ public class Sprint{
 		this.id = id;
 	}
 
-	public String getSpringName() {
-		return springName;
+	public String getSprintName() {
+		return sprintName;
 	}
 
-	public void setSpringName(String springName) {
-		this.springName = springName;
+	public void setSprintName(String springName) {
+		this.sprintName = springName;
 	}
 
 	public List<Task> getTasks() {
@@ -60,5 +60,14 @@ public class Sprint{
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
+
+	public Backlog getProject() {
+		return backlog;
+	}
+
+	public void setProject(Backlog project) {
+		this.backlog = project;
+	}
+	
 	
 }

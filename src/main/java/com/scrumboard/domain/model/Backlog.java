@@ -1,8 +1,11 @@
 package com.scrumboard.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,9 @@ public class Backlog {
 	@ElementCollection(targetClass= Task.class, fetch=FetchType.EAGER)
 	@CollectionTable(name="backlog_tasks", joinColumns=@JoinColumn(name="backlog_task_id"))
 	private Map<Long, Task> tasks = new TreeMap<>();
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="backlog")
+	private List<Sprint> sprints = new ArrayList<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="project_id")
@@ -81,4 +88,20 @@ public class Backlog {
 	public void setTasks(Map<Long, Task> tasks) {
 		this.tasks = tasks;
 	}
+	
+	public void addSprint(Sprint sprint) {
+		sprints.add(sprint);
+	}
+	
+	public void removeSpring(Sprint sprint) {
+		sprints.remove(sprint);
+	}
+	public List<Sprint> getSprints() {
+		return sprints;
+	}
+
+	public void setSprints(List<Sprint> sprints) {
+		this.sprints = sprints;
+	}
+
 }

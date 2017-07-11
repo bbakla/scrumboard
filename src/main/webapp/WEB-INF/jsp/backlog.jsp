@@ -104,6 +104,75 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-11">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix" id="goalTitle">
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Sprints</h4>
+						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+							data-target="#projectRecord" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i> Add new sprint</button>
+					</div>
+					<div class="panel-body">
+
+						<div class="table-responsive">
+							<table id="mytable" class="table table-bordred table-striped">
+								<thead>
+									<th><input type="checkbox" id="checkall" /></th>
+									<th>Id</th>
+									<th>Task name</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</thead>
+
+								<tbody>
+									<c:forEach items="${backlog.tasks}" var="task">
+										<tr>
+											<td><input type="checkbox" class="checkthis" /></td>
+											<td>${task.key}</td>
+											<td><a href="<c:url value='${backlog.id}/task/${task.key}'/>">${task.value.taskName}</a></td>
+											<td><p title="Edit">
+													<button class="btn btn-primary btn-xs" data-title="Edit"
+														data-toggle="modal" data-target="#edit">
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+												</p></td>
+											<td><p data-placement="top" data-toggle="tooltip"
+													title="Delete">
+													<button class="btn btn-danger btn-xs" data-title="Delete"
+														data-toggle="modal" data-target="#delete">
+														<span class="glyphicon glyphicon-trash"></span>
+													</button>
+												</p></td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+
+							</table>
+
+							<div class="clearfix"></div>
+							<ul class="pagination pull-right">
+								<li class="disabled"><a href="#"><span
+										class="glyphicon glyphicon-chevron-left"></span></a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#"><span
+										class="glyphicon glyphicon-chevron-right"></span></a></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 				<div class="container">
 		<div class="row">
 			<div class="col-md-11">
@@ -227,5 +296,7 @@
 			</div>
 		</div>
 	</div>
+	
+		
 </body>
 </html>

@@ -18,7 +18,7 @@
 <title>Project page</title>
 </head>
 <body>
-	<div class="container">
+	<!-- <div class="container">
 		<div class="row">
 			<div class="col-md-11">
 				<div class="panel panel-default">
@@ -51,6 +51,8 @@
 				</div>
 			</div>
 		</div>
+		
+		-->
 	
 	<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
@@ -88,8 +90,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	
 		<div class="container">
 		
@@ -214,5 +214,7 @@
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>
