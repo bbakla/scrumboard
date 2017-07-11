@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
 import com.scrumboard.domain.model.Task;
+import com.scrumboard.service.BacklogRepoService;
 import com.scrumboard.service.ProjectRepoService;
 
 
@@ -25,6 +26,9 @@ public class BacklogController {
 	
 	@Autowired
 	private ProjectRepoService projectRepoService;
+	
+	@Autowired
+	private BacklogRepoService backlogRepoService;
 	
 	@RequestMapping(value = "/{projectId}/backlog", method = RequestMethod.GET)
 	public ModelAndView getBacklogByProjectId(@PathVariable("projectId") Long projectId, Model model) {
@@ -46,6 +50,23 @@ public class BacklogController {
 											  @PathVariable("backlogId") Long backlogId, Model model) {
 		
 		Backlog backlog = projectRepoService.findBacklog(projectId, backlogId);
+		
+		model.addAttribute("backlog", backlog);
+		model.addAttribute("project", backlog.getProject());
+		model.addAttribute("task", new Task());
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(BACKLOG_PAGE);
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/{projectId}/backlog/{backlogId}", method = RequestMethod.POST)
+	public ModelAndView updateBacklogName(@ModelAttribute Backlog backlog, 
+									 @PathVariable("projectId") Long projectId,
+									 @PathVariable("backlogId") Long backlogId, Model model) {
+		
+		backlogRepoService.updateBacklog(backlogId, backlog.getName());
 		
 		model.addAttribute("backlog", backlog);
 		model.addAttribute("project", backlog.getProject());

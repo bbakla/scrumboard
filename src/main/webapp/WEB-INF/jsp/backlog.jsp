@@ -22,7 +22,7 @@
 							
 							<div class="form-group">
 								<label for="projectName" class="col-2 col-form-label">Project Name</label>
-								<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
+								<form:input id="projectName" class="form-control" path="project.name" readonly="true"/>
 							</div>
 							
 							<div class="form-group">
@@ -33,8 +33,6 @@
 							<form:button name="Create" class="btn btn-primary">Update backlog</form:button>
 						</form:form>
 						<br />
-<%-- 						 <a href="<c:url value='${backlog.id}/task'/>" --%>
-<!-- 							class="btn btn-primary btn-lg btn-block">Add task</a> -->
 							
 					</div>
 				</div>
@@ -51,7 +49,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action = "/projects/${project.id}/backlog/${backlog.id}/task" modelAttribute="task">
+				<form:form method="POST" action = "${backlog.id}/task" modelAttribute="task">
 					<div class="modal-body">
 
 						
