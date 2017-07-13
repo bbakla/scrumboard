@@ -7,5 +7,6 @@ ENDPOINTS
 
 TO BE DONE
 -----------------------------------------
+* clarify team, sprint and backlog relationship
 * task addition to the sprint
 * tasks will have parent-child relationship 
