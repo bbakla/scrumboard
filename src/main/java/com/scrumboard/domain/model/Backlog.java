@@ -34,9 +34,6 @@ public class Backlog {
 	@CollectionTable(name="backlog_tasks", joinColumns=@JoinColumn(name="backlog_task_id"))
 	private Map<Long, Task> tasks = new TreeMap<>();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="backlog")
-	private List<Sprint> sprints = new ArrayList<>();
-	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="project_id")
 	private Project project;
@@ -89,19 +86,5 @@ public class Backlog {
 		this.tasks = tasks;
 	}
 	
-	public void addSprint(Sprint sprint) {
-		sprints.add(sprint);
-	}
 	
-	public void removeSpring(Sprint sprint) {
-		sprints.remove(sprint);
-	}
-	public List<Sprint> getSprints() {
-		return sprints;
-	}
-
-	public void setSprints(List<Sprint> sprints) {
-		this.sprints = sprints;
-	}
-
 }

@@ -6,8 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet"
@@ -53,7 +55,7 @@
 		</div>
 		
 		-->
-	
+
 	<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -65,19 +67,21 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action = "${project.id}/backlog" modelAttribute="backlog">
+				<form:form method="POST" action="backlog"
+					modelAttribute="backlog">
 					<div class="modal-body">
 
-						
+
 						<div class="form-group">
-								<label for="title" class="col-2 col-form-label">Project
-									Name</label>
-								<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
-						</div>	
-							
+							<label for="title" class="col-2 col-form-label">Project
+								Name</label> <input id="projectName" type="text" class="form-control"
+								value="${project.name}" readonly>
+						</div>
+
 						<div class="form-group">
-							<label for="backlogName" class="col-2 col-form-label">Backlog name</label>
-							<form:input path="name" id="backlogName" class="form-control"/>
+							<label for="backlogName" class="col-2 col-form-label">Backlog
+								name</label>
+							<form:input path="name" id="backlogName" class="form-control" />
 						</div>
 
 					</div>
@@ -90,73 +94,74 @@
 			</div>
 		</div>
 	</div>
-	
-		<div class="container">
-		
-			<div class="col-md-11">
-				<div class="panel panel-default">
-					<div class="panel-heading clearfix" id="goalTitle">
-						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Backlogs</h4>
-						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
-					data-target="#projectRecord" data-whatever="@getbootstrap">
-					<i class="glyphicon glyphicon-plus"> </i> New backlog</button>
-					</div>
-					<div class="panel-body">
 
-						<div class="table-responsive">
-							<table id="mytable" class="table table-bordred table-striped">
-								<thead>
-									<th><input type="checkbox" id="checkall" /></th>
-									<th>Id</th>
-									<th>Backlog name</th>
-									<th>Edit</th>
-									<th>Delete</th>
-								</thead>
+	<div class="container">
 
-								<tbody>
-									<c:forEach items="${project.backlogs}" var="backlog">
-										<tr>
-											<td><input type="checkbox" class="checkthis" /></td>
-											<td>${backlog.id}</td>
-											<td><a href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${backlog.name}</a></td>
-											<td><p title="Edit">
-													<button class="btn btn-primary btn-xs" data-title="Edit"
-														data-toggle="modal" data-target="#edit">
-														<span class="glyphicon glyphicon-pencil"></span>
-													</button>
-												</p></td>
-											<td><p data-placement="top" data-toggle="tooltip"
-													title="Delete">
-													<button class="btn btn-danger btn-xs" data-title="Delete"
-														data-toggle="modal" data-target="#delete">
-														<span class="glyphicon glyphicon-trash"></span>
-													</button>
-												</p></td>
-										</tr>
-									</c:forEach>
+		<div class="col-md-11">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix" id="goalTitle">
+					<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Backlogs</h4>
+					<button type="button" class="btn btn-primary pull-right"
+						data-toggle="modal" data-target="#projectRecord"
+						data-whatever="@getbootstrap">
+						<i class="glyphicon glyphicon-plus"> </i> New backlog
+					</button>
+				</div>
+				<div class="panel-body">
 
-								</tbody>
+					<div class="table-responsive">
+						<table id="mytable" class="table table-bordred table-striped">
+							<thead>
+								<th>Id</th>
+								<th>Backlog name</th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</thead>
 
-							</table>
+							<tbody>
+								<c:forEach items="${project.backlogs}" var="backlog">
+									<tr>
+										<td>${backlog.id}</td>
+										<td><a
+											href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${backlog.name}</a></td>
+										<td><p title="Edit">
+												<button class="btn btn-primary btn-xs" data-title="Edit"
+													data-toggle="modal" data-target="#edit">
+													<span class="glyphicon glyphicon-pencil"></span>
+												</button>
+											</p></td>
+										<td><p data-placement="top" data-toggle="tooltip"
+												title="Delete">
+												<button class="btn btn-danger btn-xs" data-title="Delete"
+													data-toggle="modal" data-target="#delete">
+													<span class="glyphicon glyphicon-trash"></span>
+												</button>
+											</p></td>
+									</tr>
+								</c:forEach>
 
-							<div class="clearfix"></div>
-							<ul class="pagination pull-right">
-								<li class="disabled"><a href="#"><span
-										class="glyphicon glyphicon-chevron-left"></span></a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#"><span
-										class="glyphicon glyphicon-chevron-right"></span></a></li>
-							</ul>
+							</tbody>
 
-						</div>
+						</table>
+
+						<div class="clearfix"></div>
+						<ul class="pagination pull-right">
+							<li class="disabled"><a href="#"><span
+									class="glyphicon glyphicon-chevron-left"></span></a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#"><span
+									class="glyphicon glyphicon-chevron-right"></span></a></li>
+						</ul>
+
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
 	<div class="modal fade" id="edit" tabindex="-1" role="dialog"
@@ -214,7 +219,115 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
+<div class="modal fade" id="teamModal" tabindex="-1" role="dialog"
+		aria-labelledby="title" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title">New Team</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form method="POST" action="${project.id}/team"
+					modelAttribute="team">
+					<div class="modal-body">
+
+
+						<div class="form-group">
+							<label for="title" class="col-2 col-form-label">Project
+								Name</label> <input id="projectName" type="text" class="form-control"
+								value="${project.name}" readonly>
+						</div>
+
+						<div class="form-group">
+							<label for="teamName" class="col-2 col-form-label">Team
+								name</label>
+							<form:input path="name" id="teamName" class="form-control" />
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<form:button name="Create" class="btn btn-primary">Create</form:button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="col-md-11">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix" id="teamTitle">
+					<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Teams</h4>
+					<button type="button" class="btn btn-primary pull-right"
+						data-toggle="modal" data-target="#teamModal"
+						data-whatever="@getbootstrap">
+						<i class="glyphicon glyphicon-plus"> </i> New Team
+					</button>
+				</div>
+				<div class="panel-body">
+
+					<div class="table-responsive">
+						<table id="mytable" class="table table-bordred table-striped">
+							<thead>
+								<th>Id</th>
+								<th>Name</th>
+								<th>Backlog</th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</thead>
+
+							<tbody>
+								<c:forEach items="${project.teams}" var="team">
+									<tr>
+										<td>${team.id}</td>
+										<td><a
+											href="<c:url value='/projects/${project.id}/team/${team.id}'/>">${team.name}</a></td>
+										<td><a
+											href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${team.backlog.name}</a></td>
+										<td><p title="Edit">
+												<button class="btn btn-primary btn-xs" data-title="Edit"
+													data-toggle="modal" data-target="#edit">
+													<span class="glyphicon glyphicon-pencil"></span>
+												</button>
+											</p></td>
+										<td><p data-placement="top" data-toggle="tooltip"
+												title="Delete">
+												<button class="btn btn-danger btn-xs" data-title="Delete"
+													data-toggle="modal" data-target="#delete">
+													<span class="glyphicon glyphicon-trash"></span>
+												</button>
+											</p></td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+
+						</table>
+
+						<div class="clearfix"></div>
+						<ul class="pagination pull-right">
+							<li class="disabled"><a href="#"><span
+									class="glyphicon glyphicon-chevron-left"></span></a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#"><span
+									class="glyphicon glyphicon-chevron-right"></span></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

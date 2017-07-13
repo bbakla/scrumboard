@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.swing.Spring;
 
 @Entity
 @Table(name="Project")
@@ -31,6 +30,9 @@ public class Project {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="project")
 	private List<Backlog> backlogs = new ArrayList<>();
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="project")
+	private List<Team> teams = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -59,6 +61,14 @@ public class Project {
 	public List<Backlog> getBacklogs() {
 		return backlogs;
 	}
+	
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
 
 	public void setBacklogs(List<Backlog> backlogs) {
 		this.backlogs = backlogs;
@@ -72,5 +82,11 @@ public class Project {
 		backlogs.remove(backlog);
 	}
 	
+	public void addTeam(Team team) {
+		teams.add(team);
+	}
 	
+	public void removeTeam(Team team) {
+		teams.remove(team);
+	}
 }

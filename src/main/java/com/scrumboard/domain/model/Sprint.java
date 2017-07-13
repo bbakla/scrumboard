@@ -16,26 +16,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="sprint")
-public class Sprint{
+@Table(name = "sprint")
+public class Sprint {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
 	private String sprintName;
-	
-	@OneToMany (cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name="sprint_tasks", joinColumns=  @JoinColumn(name="sprint_id"),
-			   inverseJoinColumns= @JoinColumn(name="task_id"))
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "sprint_tasks", joinColumns = @JoinColumn(name = "sprint_id"), inverseJoinColumns = @JoinColumn(name = "task_id"))
 	private List<Task> tasks = new ArrayList<>();
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="backlog_id")
-	private Backlog backlog;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "team_id")
+	private Team team;
 
 	public Long getId() {
 		return id;
@@ -61,13 +59,11 @@ public class Sprint{
 		this.tasks = tasks;
 	}
 
-	public Backlog getProject() {
-		return backlog;
+	public Team getProject() {
+		return team;
 	}
 
-	public void setProject(Backlog project) {
-		this.backlog = project;
+	public void setProject(Team team) {
+		this.team = team;
 	}
-	
-	
 }

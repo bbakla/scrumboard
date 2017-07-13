@@ -1,7 +1,6 @@
 package com.scrumboard.controller;
 
 
-import org.h2.util.New;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
+import com.scrumboard.domain.model.Team;
 import com.scrumboard.service.ProjectRepoService;
 import com.scrumboard.service.ProjectViewService;
 
@@ -41,6 +41,7 @@ public class ProjectController {
 		
 		model.addAttribute("project", repoService.findProject(id));
 		model.addAttribute("backlog", new Backlog());
+		model.addAttribute("team", new Team());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -74,7 +75,7 @@ public class ProjectController {
 	@RequestMapping(value="", method= RequestMethod.POST)
 	public ModelAndView createProject(@ModelAttribute Project project, RedirectAttributes redirectAttributes, SessionStatus sessionStatus) {
 		
-		repoService.createProject(project);
+		repoService.saveProject(project);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();

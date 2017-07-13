@@ -1,8 +1,5 @@
 package com.scrumboard.domain.model;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -41,6 +38,10 @@ public class Person implements Serializable {
                joinColumns = @JoinColumn(name="people_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="tasks_id", referencedColumnName="id"))
     private Set<Task> tasks = new HashSet<>();
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="team_id")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -70,7 +71,6 @@ public class Person implements Serializable {
         return email;
     }
 
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -95,8 +95,16 @@ public class Person implements Serializable {
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
+    
+    public Team getTeam() {
+		return team;
+	}
 
-    @Override
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

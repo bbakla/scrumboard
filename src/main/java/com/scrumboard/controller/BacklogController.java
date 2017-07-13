@@ -1,5 +1,6 @@
 package com.scrumboard.controller;
 
+import org.h2.util.New;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Project;
 import com.scrumboard.domain.model.Task;
+import com.scrumboard.domain.model.Team;
 import com.scrumboard.service.BacklogRepoService;
 import com.scrumboard.service.ProjectRepoService;
 
@@ -89,6 +91,7 @@ public class BacklogController {
 		projectRepoService.updateProject(project.getId(), project);
 		
 		model.addAttribute("project", project);
+		model.addAttribute("team", new Team());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();

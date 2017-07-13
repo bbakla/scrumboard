@@ -20,7 +20,7 @@ public class ProjectRepoService {
 	@Autowired
 	private TaskRepository<Task> taskRepository;
 	
-	public void createProject(Project project) {
+	public void saveProject(Project project) {
 		repository.save(project);
 	}
 
