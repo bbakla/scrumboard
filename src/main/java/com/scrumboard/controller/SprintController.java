@@ -54,7 +54,7 @@ public class SprintController {
 		model.addAttribute("project", sprint.getTeam().getProject());
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(REDIRECT_TO_A_PAGE + projectId + "/team/" + teamId);
+		modelAndView.setViewName(SPRINT_PAGE);
 		
 		return modelAndView;
 	}
