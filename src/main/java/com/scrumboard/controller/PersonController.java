@@ -52,6 +52,6 @@ public class PersonController {
 		model.addAttribute("team", new Team());
 		model.addAttribute("person", new Person());
 		
-		return SINGLE_PROJECT_PAGE;
+		return REDIRECT_TO_SINGLE_PROJECT + "/" + projectId;
 	}
 }

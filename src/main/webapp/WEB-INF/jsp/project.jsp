@@ -222,6 +222,7 @@
 
 <!-- END OF BACKLOG -->
 <!-- TEAMS -->
+
 	<div class="modal fade" id="teamModal" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -233,15 +234,12 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action="${project.id}/team"
-					modelAttribute="team">
+				<form:form method="POST" action="${project.id}/team" modelAttribute="team">
 					<div class="modal-body">
 
-
 						<div class="form-group">
-							<label for="title" class="col-2 col-form-label">Project
-								Name</label> <input id="projectName" type="text" class="form-control"
-								value="${project.name}" readonly>
+							<label for="title" class="col-2 col-form-label">Project	Name</label>
+							<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
 						</div>
 
 						<div class="form-group">
@@ -348,7 +346,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action = "person" modelAttribute="person">
+				<form:form method="POST" action = "${project.id}/person" modelAttribute="person">
 					<div class="modal-body">
 
 						

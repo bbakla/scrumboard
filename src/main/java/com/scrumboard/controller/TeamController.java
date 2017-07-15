@@ -96,7 +96,7 @@ public class TeamController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();
-		modelAndView.setViewName(SINGLE_PROJECT_PAGE); 
+		modelAndView.setViewName(REDIRECT_TO_SINGLE_PROJECT + "/" + projectId); 
 		
 		return modelAndView;
 	}
