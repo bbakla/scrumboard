@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.swing.Spring;
-
 
 @Entity
 @Table(name = "Team")
@@ -25,34 +23,35 @@ public class Team {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="team_id")
+	@Column(name = "team_id")
 	private Long id;
 
 	@Column
 	private String name;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="project_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id")
 	private Project project;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="team")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "team")
 	private List<Person> members = new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private Backlog backlog;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="team")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "team")
 	private List<Sprint> sprints = new ArrayList<>();
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Sprint currentSprint;
-	
+
 	public void addPerson(Person person) {
 		members.add(person);
+		person.setTeam(this);
 	}
-	
+
 	public void removePerson(Person person) {
 		members.remove(person);
 	}
@@ -88,14 +87,15 @@ public class Team {
 	public void setBacklog(Backlog backlog) {
 		this.backlog = backlog;
 	}
-	
+
 	public void addSprint(Sprint sprint) {
 		sprints.add(sprint);
 	}
-	
-	public void removeSpring(Sprint sprint) {
+
+	public void removeSprint(Sprint sprint) {
 		sprints.remove(sprint);
 	}
+
 	public List<Sprint> getSprints() {
 		return sprints;
 	}
@@ -119,5 +119,5 @@ public class Team {
 	public void setCurrentSprint(Sprint currentSprint) {
 		this.currentSprint = currentSprint;
 	}
-	
+
 }

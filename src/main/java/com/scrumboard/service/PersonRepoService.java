@@ -27,5 +27,9 @@ public class PersonRepoService {
 	public void savePerson(Person person) {
 		personRepository.save(person);
 	}
+	
+	public Person findPerson(Long id) {
+		return personRepository.findById(id);
+	}
 
 }

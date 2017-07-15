@@ -2,9 +2,12 @@ package com.scrumboard.service;
 
 import java.util.List;
 
+import javax.swing.Spring;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.scrumboard.domain.model.Sprint;
 import com.scrumboard.domain.model.Team;
 import com.scrumboard.repository.TeamRepository;
 
@@ -26,6 +29,15 @@ public class TeamRepoService {
 	
 	public List<Team> getTeams() {
 		return teamRepository.findAll();
+	}
+
+	public Sprint findTeamByAndSprintId(Long teamId, Long sprintId) {
+		
+		Team team = teamRepository.findById(teamId);
+		return team.getSprints()
+				   .stream()
+				   .filter(sprint -> sprint.getId() == sprintId)
+				   .findFirst().get();
 	}
 	
 }

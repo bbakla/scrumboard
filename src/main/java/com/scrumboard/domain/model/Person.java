@@ -19,6 +19,7 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="person_id")
     private Long id;
 
     @NotNull
@@ -28,11 +29,7 @@ public class Person implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "person_tasks",
-               joinColumns = @JoinColumn(name="people_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="tasks_id", referencedColumnName="id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "assignedTo")
     private Set<Task> tasks = new HashSet<>();
     
     @ManyToOne(fetch=FetchType.LAZY)
@@ -74,13 +71,13 @@ public class Person implements Serializable {
 
     public Person addTasks(Task task) {
         this.tasks.add(task);
-        task.getResponsibles().add(this);
+        task.setAssignedTo(this);
         return this;
     }
 
     public Person removeTasks(Task task) {
         this.tasks.remove(task);
-        task.getResponsibles().remove(this);
+        task.setAssignedTo(null);
         return this;
     }
 

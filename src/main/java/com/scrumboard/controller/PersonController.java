@@ -1,7 +1,5 @@
 package com.scrumboard.controller;
 
-import org.eclipse.jdt.internal.compiler.flow.LoopingFlowContext;
-import org.h2.util.New;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +50,6 @@ public class PersonController {
 		model.addAttribute("team", new Team());
 		model.addAttribute("person", new Person());
 		
-		return REDIRECT_TO_SINGLE_PROJECT + "/" + projectId;
+		return REDIRECT_TO_A_PAGE + projectId;
 	}
 }

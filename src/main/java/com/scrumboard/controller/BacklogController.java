@@ -98,7 +98,7 @@ public class BacklogController {
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();
 		
-		modelAndView.setViewName(REDIRECT_TO_SINGLE_PROJECT + "/" + projectId);
+		modelAndView.setViewName(REDIRECT_TO_A_PAGE + "/" + projectId);
 
 		return modelAndView;
 	}

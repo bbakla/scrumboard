@@ -346,7 +346,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action = "${project.id}/person" modelAttribute="person">
+				<form:form method="POST" action = "person" modelAttribute="person">
 					<div class="modal-body">
 
 						

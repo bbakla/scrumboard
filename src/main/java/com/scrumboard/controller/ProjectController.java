@@ -83,7 +83,7 @@ public class ProjectController {
 		ModelAndView modelAndView = new ModelAndView();
 		sessionStatus.setComplete();
 		
-		modelAndView.setViewName(REDIRECT_TO_PROJECTS_PAGE);
+		modelAndView.setViewName(REDIRECT_TO_A_PAGE);
 
 		return modelAndView;
 	}

@@ -36,9 +36,7 @@ public class SampleDataCreator {
 		
 		task.setHistory(createTaskHistory());
 		
-		Set<Person> persons = new HashSet<>();
-		persons.add(createPerson());
-		task.setResponsibles(persons);
+		task.setAssignedTo(createPerson());
 
 		task.setStartedDate(LocalDateTime.now());
 		task.setTaskDetails(createTaskDetails());

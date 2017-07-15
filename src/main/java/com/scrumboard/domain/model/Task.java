@@ -50,9 +50,9 @@ public class Task implements Serializable {
     @JoinColumn(unique = true)
     private TaskHistory history;
 
-    @ManyToMany(mappedBy = "tasks")
-    @JsonIgnore
-    private Set<Person> responsibles = new HashSet<>();
+    @ManyToOne(fetch=FetchType.LAZY)
+  	@JoinColumn(name="person_id")
+    private Person assignedTo;
 
     public Long getId() {
         return id;
@@ -103,33 +103,16 @@ public class Task implements Serializable {
     public void setHistory(TaskHistory taskHistory) {
         this.history = taskHistory;
     }
-
-    public Set<Person> getResponsibles() {
-        return responsibles;
-    }
-
-    public Task responsibles(Set<Person> people) {
-        this.responsibles = people;
-        return this;
-    }
-
-    public Task addResponsibles(Person person) {
-        this.responsibles.add(person);
-        person.getTasks().add(this);
-        return this;
-    }
-
-    public Task removeResponsibles(Person person) {
-        this.responsibles.remove(person);
-        person.getTasks().remove(this);
-        return this;
-    }
-
-    public void setResponsibles(Set<Person> people) {
-        this.responsibles = people;
-    }
     
-    public LocalDateTime getCreatedDate() {
+    public Person getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(Person assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
