@@ -8,5 +8,6 @@ public class ViewNames {
 	public static final String BACKLOG_PAGE = "backlog";
 	public static final String SINGLE_TASK_PAGE = "task";
 	public static final String TEAM_PAGE = "team";
+	public static final String PERSON_PAGE = "person";
 	
 }

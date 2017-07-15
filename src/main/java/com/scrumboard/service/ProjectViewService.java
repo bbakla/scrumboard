@@ -13,7 +13,10 @@ import static com.scrumboard.controller.ViewNames.*;
 public class ProjectViewService {
 	
 	@Autowired
-	ProjectRepoService repoService;
+	private ProjectRepoService repoService;
+	
+	@Autowired
+	private TeamRepoService teamRepoService;
 
 	public ModelAndView getAllProjects(Model model) {
 		Project project = new Project();
@@ -23,6 +26,7 @@ public class ProjectViewService {
 		modelAndView.setViewName(PROJECTS_PAGE);
 		
 		model.addAttribute("projects", repoService.getAllProjects());
+		model.addAttribute("teams", teamRepoService.getTeams());
 		
 		return modelAndView;
 		

@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -55,7 +56,7 @@
 		</div>
 		
 		-->
-
+<!-- BACKLOG -->
 	<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -67,8 +68,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" action="backlog"
-					modelAttribute="backlog">
+				<form:form method="POST" action="${project.id}/backlog" modelAttribute="backlog">
 					<div class="modal-body">
 
 
@@ -220,8 +220,9 @@
 		</div>
 	</div>
 
-
-<div class="modal fade" id="teamModal" tabindex="-1" role="dialog"
+<!-- END OF BACKLOG -->
+<!-- TEAMS -->
+	<div class="modal fade" id="teamModal" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -260,6 +261,8 @@
 		</div>
 	</div>
 
+	<!-- TEAMS -->
+
 	<div class="container">
 		<div class="col-md-11">
 			<div class="panel panel-default">
@@ -279,6 +282,8 @@
 								<th>Id</th>
 								<th>Name</th>
 								<th>Backlog</th>
+								<th>Current sprint</th>
+								<th>Number of members</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</thead>
@@ -287,10 +292,11 @@
 								<c:forEach items="${project.teams}" var="team">
 									<tr>
 										<td>${team.id}</td>
-										<td><a
-											href="<c:url value='/projects/${project.id}/team/${team.id}'/>">${team.name}</a></td>
-										<td><a
-											href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${team.backlog.name}</a></td>
+										<td><a href="<c:url value='/projects/${project.id}/team/${team.id}'/>">${team.name}</a></td>
+										<td><a href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${team.backlog.name}</a></td>
+										<td>${team.currentSprint.sprintName}</td>
+										<td>${fn:length(team.members)}</td>
+											
 										<td><p title="Edit">
 												<button class="btn btn-primary btn-xs" data-title="Edit"
 													data-toggle="modal" data-target="#edit">
@@ -329,5 +335,178 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- PEOPLE -->
+	<div class="modal fade" id="personCreation" tabindex="-1" role="dialog"
+		aria-labelledby="title" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title">New Person</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form:form method="POST" action = "person" modelAttribute="person">
+					<div class="modal-body">
+
+						
+						<div class="form-group">
+								<label for="title" class="col-2 col-form-label">Person
+									Name</label>
+								<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
+						</div>	
+							
+						<div class="form-group">
+							<label for="backlogName" class="col-2 col-form-label">Person name</label>
+							<form:input path="personName" id="personName" class="form-control"/>
+						</div>
+						
+						<div class="form-group">
+							<label for="backlogName" class="col-2 col-form-label">Email</label>
+							<form:input path="email" id="email" class="form-control"/>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<form:button name="Create" class="btn btn-primary">Create</form:button>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+	
+		<div class="container">
+		
+			<div class="col-md-11">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix" id="goalTitle">
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">People</h4>
+						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+					data-target="#personCreation" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i>Add person</button>
+					</div>
+					<div class="panel-body">
+
+						<div class="table-responsive">
+							<table id="mytable" class="table table-bordred table-striped">
+								<thead>
+									<th><input type="checkbox" id="checkall" /></th>
+									<th>Id</th>
+									<th>Person name</th>
+									<th>Email</th>
+									<th>Team</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</thead>
+
+								<tbody>
+									<c:forEach items="${project.people}" var="person">
+										<tr>
+											<td><input type="checkbox" class="checkthis" /></td>
+											<td>${backlog.id}</td>
+											<td><a href="<c:url value='/projects/${project.id}/person/${person.id}'/>">${person.personName}</a></td>
+											<td>${person.email}</td>
+											<td>${person.team.name}</td>
+											<td><p title="Edit">
+													<button class="btn btn-primary btn-xs" data-title="Edit"
+														data-toggle="modal" data-target="#edit">
+														<span class="glyphicon glyphicon-pencil"></span>
+													</button>
+												</p></td>
+											<td><p data-placement="top" data-toggle="tooltip"
+													title="Delete">
+													<button class="btn btn-danger btn-xs" data-title="Delete"
+														data-toggle="modal" data-target="#delete">
+														<span class="glyphicon glyphicon-trash"></span>
+													</button>
+												</p></td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+
+							</table>
+
+							<div class="clearfix"></div>
+							<ul class="pagination pull-right">
+								<li class="disabled"><a href="#"><span
+										class="glyphicon glyphicon-chevron-left"></span></a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#"><span
+										class="glyphicon glyphicon-chevron-right"></span></a></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+					<h4 class="modal-title custom_align" id="Heading">Edit Your
+						Detail</h4>
+				</div>
+
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-warning btn-lg"
+						style="width: 100%;">
+						<span class="glyphicon glyphicon-ok-sign"></span> Update
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+					<h4 class="modal-title custom_align" id="Heading">Delete this
+						entry</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="alert alert-danger">
+						<span class="glyphicon glyphicon-warning-sign"></span> Are you
+						sure you want to delete this Record?
+					</div>
+
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-success">
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> No
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 </body>
 </html>

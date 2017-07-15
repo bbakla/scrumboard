@@ -22,10 +22,6 @@ public class Person implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "person_id", nullable = false)
-    private String personId;
-
-    @NotNull
     @Column(name = "person_name", nullable = false)
     private String personName;
 
@@ -42,6 +38,10 @@ public class Person implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="team_id")
     private Team team;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="project_id")
+    private Project project;
 
     public Long getId() {
         return id;
@@ -49,14 +49,6 @@ public class Person implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(String personId) {
-        this.personId = personId;
     }
 
     public String getPersonName() {
@@ -103,6 +95,24 @@ public class Person implements Serializable {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
+	
+	public Project getPerson() {
+		return project;
+	}
+
+	public void setPerson(Project project) {
+		this.project = project;
+	}
+	
+	
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
 	@Override
     public boolean equals(Object o) {
@@ -128,7 +138,6 @@ public class Person implements Serializable {
     public String toString() {
         return "Person{" +
             "id=" + getId() +
-            ", personId='" + getPersonId() + "'" +
             ", personName='" + getPersonName() + "'" +
             ", email='" + getEmail() + "'" +
             "}";

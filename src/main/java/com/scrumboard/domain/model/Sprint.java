@@ -1,5 +1,6 @@
 package com.scrumboard.domain.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +36,17 @@ public class Sprint {
 	@JoinColumn(name = "team_id")
 	private Team team;
 
+	@Column
+	private LocalDateTime sprintStartAt;
+	
+	@Column
+	private LocalDateTime sprintEndAt;
+	
+	
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -65,5 +73,29 @@ public class Sprint {
 
 	public void setProject(Team team) {
 		this.team = team;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public LocalDateTime getSprintStartAt() {
+		return sprintStartAt;
+	}
+
+	public void setSprintStartAt(LocalDateTime sprintStartAt) {
+		this.sprintStartAt = sprintStartAt;
+	}
+
+	public LocalDateTime getSprintEndAt() {
+		return sprintEndAt;
+	}
+
+	public void setSprintEndAt(LocalDateTime sprintEndAt) {
+		this.sprintEndAt = sprintEndAt;
 	}
 }

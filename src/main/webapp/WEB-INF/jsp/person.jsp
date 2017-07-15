@@ -1,55 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/main.css">
 
-<script type="text/javascript">
-$('#projectRecord').on('show.bs.modal', function (event) {
-	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  var recipient = button.data('whatever') // Extract info from data-* attributes
 
-	  var modal = $(this)
-	  modal.find('.modal-title').text('New message to ' + recipient)
-	  modal.find('.modal-body input').val(recipient)
-	})
-</script>
 
-<title>Insert title here</title>
+<title>Project page</title>
 </head>
 <body>
+	<!-- <div class="container">
+		<div class="row">
+			<div class="col-md-11">
+				<div class="panel panel-default">
+					<div class="panel-heading" id="title">Project details</div>
+					<div class="panel-body">
+
+						<form:form method="POST" modelAttribute="project">
+							<div class="form-group">
+								<label for="id" class="col-2 col-form-label">Project Id</label>
+								<form:input path="id" id="id" class="form-control" readonly="true"/>
+							</div>
+
+							<div class="form-group">
+								<label for="title" class="col-2 col-form-label">Project
+									Name</label>
+								<form:input path="name" id="name" class="form-control" />
+							</div>
+
+							<div class="form-group">
+								<label for="description" class="col-2 col-form-label">Description</label>
+								<form:input path="description" id="description"
+									class="form-control" />
+							</div>
+							<form:button name="Update" class="btn btn-primary">Update</form:button>
+							<form:button name="Cancel" class="btn btn-primary">Cancel</form:button>
+						</form:form>
+						<br />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		-->
+	
 	<div class="modal fade" id="projectRecord" tabindex="-1" role="dialog"
 		aria-labelledby="title" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="title">New project</h5>
+					<h5 class="modal-title" id="title">New backlog</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form:form method="POST" modelAttribute="project">
+				<form:form method="POST" action = "${project.id}/team" modelAttribute="team">
 					<div class="modal-body">
+
+						
 						<div class="form-group">
-							<label for="title" class="col-2 col-form-label">Project
-								Name</label>
-							<form:input path="name" id="name" class="form-control" />
-						</div>
+								<label for="title" class="col-2 col-form-label">Project
+									Name</label>
+								<input id="projectName" type="text" class="form-control" value="${project.name}" readonly>
+						</div>	
+							
 						<div class="form-group">
-							<label for="description" class="col-2 col-form-label">Description</label>
-							<form:input path="description" id="description"
-								class="form-control" />
+							<label for="backlogName" class="col-2 col-form-label">Backlog name</label>
+							<form:input path="name" id="team.backlog" class="form-control"/>
 						</div>
 
 					</div>
@@ -63,14 +91,15 @@ $('#projectRecord').on('show.bs.modal', function (event) {
 		</div>
 	</div>
 	
-	<div class="container">
+		<div class="container">
+		
 			<div class="col-md-11">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix" id="goalTitle">
-						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Projects</h4>
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Members</h4>
 						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
-							data-target="#projectRecord" data-whatever="@getbootstrap">
-						<i class="glyphicon glyphicon-plus"> </i> New project</button>
+					data-target="#projectRecord" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i>Add member</button>
 					</div>
 					<div class="panel-body">
 
@@ -79,19 +108,17 @@ $('#projectRecord').on('show.bs.modal', function (event) {
 								<thead>
 									<th><input type="checkbox" id="checkall" /></th>
 									<th>Id</th>
-									<th>Project name</th>
-									<th>Description</th>
+									<th>Backlog name</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</thead>
 
 								<tbody>
-									<c:forEach items="${projects}" var="project">
+									<c:forEach items="${project.backlogs}" var="backlog">
 										<tr>
 											<td><input type="checkbox" class="checkthis" /></td>
-											<td>${project.id}</td>
-											<td><a href="<c:url value='/projects/${project.id}'/>">${project.name}</a></td>
-											<td>${project.description}</td>
+											<td>${backlog.id}</td>
+											<td><a href="<c:url value='/projects/${project.id}/backlog/${backlog.id}'/>">${backlog.name}</a></td>
 											<td><p title="Edit">
 													<button class="btn btn-primary btn-xs" data-title="Edit"
 														data-toggle="modal" data-target="#edit">
@@ -187,6 +214,7 @@ $('#projectRecord').on('show.bs.modal', function (event) {
 			</div>
 		</div>
 	</div>
-
+	
+	
 </body>
 </html>

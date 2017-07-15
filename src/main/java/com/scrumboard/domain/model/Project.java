@@ -34,6 +34,9 @@ public class Project {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="project")
 	private List<Team> teams = new ArrayList<>();
 	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="project")
+	private List<Person> people = new ArrayList<>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -88,5 +91,13 @@ public class Project {
 	
 	public void removeTeam(Team team) {
 		teams.remove(team);
+	}
+
+	public List<Person> getPeople() {
+		return people;
+	}
+
+	public void setPeople(List<Person> people) {
+		this.people = people;
 	}
 }

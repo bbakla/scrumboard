@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.swing.Spring;
 
 
 @Entity
@@ -43,6 +44,10 @@ public class Team {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="team")
 	private List<Sprint> sprints = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	private Sprint currentSprint;
 	
 	public void addPerson(Person person) {
 		members.add(person);
@@ -107,5 +112,12 @@ public class Team {
 		this.project = project;
 	}
 
+	public Sprint getCurrentSprint() {
+		return currentSprint;
+	}
+
+	public void setCurrentSprint(Sprint currentSprint) {
+		this.currentSprint = currentSprint;
+	}
 	
 }

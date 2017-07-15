@@ -130,7 +130,6 @@ public class SampleDataCreator {
 		
 		Person person = new Person();
 		person.setEmail(ANY_EMAIL);
-		person.setPersonId(ANY_PERSON_ID);
 		person.setPersonName(ANY_PERSON_NAME);
 
 		return person;
