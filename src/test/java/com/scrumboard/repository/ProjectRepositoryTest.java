@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 
 import com.scrumboard.config.JpaTestConfiguration;
 import com.scrumboard.domain.model.Project;
+import com.scrumboard.domain.model.Sprint;
 import com.scrumboard.domain.model.Task;
 
 import static com.scrumboard.helper.SampleDataCreator.*;
@@ -28,12 +29,12 @@ public class ProjectRepositoryTest extends AbstractTransactionalTestNGSpringCont
 	private ProjectRepository<Project> repository;
 	
 	@Autowired
-	private ScrumBoardRepository<Task> taskRepository;
+	private SprintRepository<Sprint> sprintRepository;
 	
 	@BeforeMethod
 	public void deleteRepository() {
 		repository.deleteAll();
-		taskRepository.deleteAll();
+		sprintRepository.deleteAll();
 	}
 	
 	@Test

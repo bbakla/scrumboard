@@ -14,6 +14,7 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.annotations.BeforeMethod;
 
 import com.scrumboard.config.JpaTestConfiguration;
+import com.scrumboard.domain.model.Sprint;
 import com.scrumboard.domain.model.Task;
 
 import static com.scrumboard.helper.SampleDataCreator.*;
@@ -24,7 +25,7 @@ import static com.scrumboard.helper.SampleDataCreator.*;
 public class ScrumboardRepositoryTest extends AbstractTransactionalTestNGSpringContextTests {
 
 	@Autowired
-	private ScrumBoardRepository<Task> repository;
+	private TaskRepository<Task> repository;
 	
 	@BeforeMethod
 	public void deleteRepository() {

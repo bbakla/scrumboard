@@ -53,13 +53,54 @@
 		</div>
 		
 		-->
+		
+		<div class="modal fade" id="peopleInTeam" tabindex="-1" role="dialog"
+		aria-labelledby="title" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="title">Add task to the sprint</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method="POST" action="/projects/${project.id}/team/${team.id}/sprint/${sprint.id}">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="taskId" class="col-2 col-form-label">Task name</label>
+							<select id="taskId" name="taskId"
+									class="form-control">
+									
+									 <c:forEach items="${sprint.team.backlog.tasks}" var="task">
+        								<option value="<c:out value="${task.value.id}" />"><c:out value="${task.value.taskName}" /></option>
+    								 </c:forEach>
+									
+								</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<input type="submit" name="Create" value="Create" class="btn btn-primary"/>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	
 		<div class="container">
 		
 			<div class="col-md-11">
+				
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix" id="goalTitle">
 						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">${sprint.sprintName}</h4>
+						<button type="button" class="btn btn-primary pull-right" data-toggle="modal" 
+					data-target="#peopleInTeam" data-whatever="@getbootstrap">
+					<i class="glyphicon glyphicon-plus"> </i>Add task to the sprint</button>
 					</div>
 					<div class="panel-body">
 
@@ -78,13 +119,12 @@
 
 								<tbody>
 									<c:forEach items="${sprint.tasks}" var="task">
-									/{projectId}/backlog/{backlogId}/task
 										<tr>
 											<td><input type="checkbox" class="checkthis" /></td>
 											<td>${sprint.id}</td>
-											<td><a href="<c:url value='/projects/${project.id}/backlog/${task.team.backlog.id}'/>">${task.taskName}</a></td>
+											<td><a href="<c:url value='/projects/${project.id}/backlog/${team.backlog.id}/task/${task.id}'/>">${task.taskName}</a></td>
 											<td>task.status</td>
-											<td>task.</td>
+											<td>task.assignedTo</td>
 											<td>task.lastUpdate</td>
 											<td><p title="Edit">
 													<button class="btn btn-primary btn-xs" data-title="Edit"

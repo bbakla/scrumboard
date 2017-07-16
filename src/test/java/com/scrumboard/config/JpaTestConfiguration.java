@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.scrumboard.repository.ScrumBoardRepository;
+import com.scrumboard.repository.SprintRepository;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = ScrumBoardRepository.class)
+@EnableJpaRepositories(basePackageClasses = SprintRepository.class)
 @PropertySources(@PropertySource("classpath:application-test.properties"))
 public class JpaTestConfiguration
 {

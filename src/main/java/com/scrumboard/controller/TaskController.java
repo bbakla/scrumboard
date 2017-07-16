@@ -106,7 +106,7 @@ public class TaskController {
 		model.addAttribute("project", project);
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(BACKLOG_PAGE);
+		modelAndView.setViewName(REDIRECT_TO_A_PAGE + projectId +"/backlog/" + backlogId);
 		
 		return modelAndView;
 	}

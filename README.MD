@@ -7,5 +7,5 @@ ENDPOINTS
 
 TO BE DONE
 -----------------------------------------
-* task addition to the sprint
+* drag&drop
 * tasks will have parent-child relationship 

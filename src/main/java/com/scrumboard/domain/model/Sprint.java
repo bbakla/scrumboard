@@ -98,4 +98,12 @@ public class Sprint {
 	public void setSprintEndAt(LocalDateTime sprintEndAt) {
 		this.sprintEndAt = sprintEndAt;
 	}
+	
+	public void addTask(Task task) {
+		tasks.add(task);
+	}
+	
+	public void removeTask(Task task) {
+		tasks.remove(task);
+	}
 }
