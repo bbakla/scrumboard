@@ -233,7 +233,8 @@
 				<c:forEach items = "${sprint.tasks}" var ="task">
 					<c:if test="${task.status eq 'NOT_STARTED'}">
 						 <div class="thumbnail">
-						 	<h2>${task.id}</h2>
+						 	<p><b>Task name:</b> ${task.taskName}</h2>
+						 	<p><b>task Id:</b>   ${task.id}</p>
 						 </div>
 					</c:if>
 				</c:forEach>
@@ -244,7 +245,8 @@
 				<c:forEach items = "${sprint.tasks}" var ="task">
 					<c:if test="${task.status eq 'ANALYSED'}">
 						 <div class="thumbnail">
-						 	<h2>${task.id}</h2>
+						 	<h2>${task.taskName}</h2>
+						 	<p>taskId:  ${task.id}</p>
 						 </div>
 					</c:if>
 				</c:forEach>
@@ -255,7 +257,8 @@
 				<c:forEach items = "${sprint.tasks}" var ="task">
 					<c:if test="${task.status eq 'IN_PROGRESS'}">
 						 <div class="thumbnail">
-						 	<h2>${task.id}</h2>
+						 	<h2>${task.taskName}</h2>
+						 	<p>taskId:  ${task.id}</p>
 						 </div>
 					</c:if>
 				</c:forEach>
@@ -266,7 +269,8 @@
 				<c:forEach items = "${sprint.tasks}" var ="task">
 					<c:if test="${task.status eq 'COMPLETED'}">
 						 <div class="thumbnail">
-						 	<h2>${task.id}</h2>
+						 	<h2>${task.taskName}</h2>
+						 	<p>taskId:  ${task.id}</p>
 						 </div>
 					</c:if>
 				</c:forEach>
@@ -277,7 +281,8 @@
 				<c:forEach items = "${sprint.tasks}" var ="task">
 					<c:if test="${task.status eq 'VERIFIED'}">
 						 <div class="thumbnail">
-						 	<h2>${task.id}</h2>
+						 	h2>${task.taskName}</h2>
+						 	<p>taskId:  ${task.id}</p>
 						 </div>
 					</c:if>
 				</c:forEach>
