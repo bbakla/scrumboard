@@ -12,6 +12,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.scrumboard.domain.enumeration.TaskStatus;
 import com.scrumboard.domain.model.Backlog;
 import com.scrumboard.domain.model.Person;
 import com.scrumboard.domain.model.Project;
@@ -22,6 +23,10 @@ import com.scrumboard.service.ProjectRepoService;
 
 
 import static com.scrumboard.controller.ViewNames.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/projects")
@@ -41,7 +46,6 @@ public class BacklogController {
 		model.addAttribute("backlog", new Backlog());
 		model.addAttribute("project", project);
 		
-		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(BACKLOG_PAGE);
 
@@ -57,6 +61,9 @@ public class BacklogController {
 		model.addAttribute("backlog", backlog);
 		model.addAttribute("project", backlog.getProject());
 		model.addAttribute("task", new Task());
+		
+		List<TaskStatus> status = Arrays.asList(TaskStatus.values());
+		model.addAttribute("taskStatus", status);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(BACKLOG_PAGE);
@@ -74,6 +81,9 @@ public class BacklogController {
 		model.addAttribute("backlog", backlog);
 		model.addAttribute("project", backlog.getProject());
 		model.addAttribute("task", new Task());
+		
+		List<TaskStatus> status = Arrays.asList(TaskStatus.values());
+		model.addAttribute("status", status);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(BACKLOG_PAGE);

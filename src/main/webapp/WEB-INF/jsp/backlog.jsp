@@ -70,6 +70,13 @@
 						</div>
 						
 						<div class="form-group">
+							<label for="status" class="col-2 col-form-label">Status</label>
+							<form:select path="status" id = "status" class="form-control">
+								<form:options items="${taskStatus}"/>
+							</form:select>
+						</div>
+						
+						<div class="form-group">
 						<label for="startedDate" class="col-2 col-form-label">Started Date</label>
 						<form:input path="startedDate" id="startedDate"
 							class="form-control" />
@@ -125,6 +132,7 @@
 									<th><input type="checkbox" id="checkall" /></th>
 									<th>Id</th>
 									<th>Task name</th>
+									<th>Task status</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</thead>
@@ -135,6 +143,7 @@
 											<td><input type="checkbox" class="checkthis" /></td>
 											<td>${task.key}</td>
 											<td><a href="<c:url value='${backlog.id}/task/${task.key}'/>">${task.value.taskName}</a></td>
+											<td>${task.value.status}</td>
 											<td><p title="Edit">
 													<button class="btn btn-primary btn-xs" data-title="Edit"
 														data-toggle="modal" data-target="#edit">
