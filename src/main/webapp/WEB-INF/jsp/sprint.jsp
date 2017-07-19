@@ -7,11 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%-- <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"> --%>
-<link type="text/css" rel="stylesheet" href="/css/main.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="/css/main.css">
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dragdrop.js"></script>
 
 
 
@@ -226,84 +230,110 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="col-lg-12">
-			<div id="not_started" class="col-lg-2 clone_container">
-				<h4>Not started</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'NOT_STARTED'}">
-						 <div class="thumbnail">
-						 	<p><b>Task name:</b> ${task.taskName}</h2>
-						 	<p><b>task Id:</b>   ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
+
+	<div id = "dragdiv" class="container">
+		<div class="col-md-12">
+			<div id ="scrumboard" class="row vdivide">
+				<div id="not_started" name="sdf" class="col-sm-2 text-center">
+					<h4>Not started</h4>
+					
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'NOT_STARTED'}">
+							
+							
+							<div class="thumbnail">
+								<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+
+				<div id="analysed" class="col-sm-2 text-center">
+					<h4>Analysed</h4>
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'ANALYSED'}">
+							<div class="thumbnail">
+								<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+				<div id="in progress" class="col-sm-2 text-center">
+					<h4>In Progress</h4>
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'IN_PROGRESS'}">
+							<div class="thumbnail">
+								<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="completed" class="col-sm-2 text-center">
+					<h4>Completed</h4>
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'COMPLETED'}">
+							<div class="thumbnail">
+								<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="verified" class="col-sm-2 text-center">
+					<h4>Verified</h4>
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'VERIFIED'}">
+							<div class="thumbnail">
+							<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+				<div id="integrated" class="col-sm-2 text-center">
+					<h4>Integrated</h4>
+					<c:forEach items="${sprint.tasks}" var="task">
+						<c:if test="${task.status eq 'INTEGRATED'}">
+							<div class="thumbnail">
+								<p>
+									<b>Task name:</b> ${task.taskName}
+								</p>
+								<p>
+									<b>task Id:</b> ${task.id}
+								</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
 			</div>
-			
-			<div id="analysed" class="col-lg-2 clone_container">
-				<h4>Analysed</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'ANALYSED'}">
-						 <div class="thumbnail">
-						 	<h2>${task.taskName}</h2>
-						 	<p>taskId:  ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
-			</div>
-			
-			<div id="in_progress" class="col-lg-2 clone_container">
-				<h4>In Progress</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'IN_PROGRESS'}">
-						 <div class="thumbnail">
-						 	<h2>${task.taskName}</h2>
-						 	<p>taskId:  ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
-			</div>
-			
-			<div id="completed" class="col-lg-2 clone_container">
-				<h4>Completed</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'COMPLETED'}">
-						 <div class="thumbnail">
-						 	<h2>${task.taskName}</h2>
-						 	<p>taskId:  ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
-			</div>
-			
-			<div id="verified" class="col-lg-2 clone_container">
-				<h4>Verified</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'VERIFIED'}">
-						 <div class="thumbnail">
-						 	h2>${task.taskName}</h2>
-						 	<p>taskId:  ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
-			</div>
-			
-			<div id="integrated" class="col-lg-2 clone_container">
-				<h4>Integrated</h4>
-				<c:forEach items = "${sprint.tasks}" var ="task">
-					<c:if test="${task.status eq 'INTEGRATED'}">
-						 <div class="thumbnail">
-						 	<h2>${task.taskName}</h2>
-						 	<p>taskId:  ${task.id}</p>
-						 </div>
-					</c:if>
-				</c:forEach>
-			</div>
-			
+
 		</div>
 	</div>
-
-
 
 </body>
 </html>
