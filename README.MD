@@ -7,5 +7,6 @@ ENDPOINTS
 
 TO BE DONE
 -----------------------------------------
-* drag&drop
+* id of elements while drag & drop
 * tasks will have parent-child relationship 
+

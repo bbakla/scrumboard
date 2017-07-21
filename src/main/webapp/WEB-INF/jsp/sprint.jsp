@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -10,6 +11,7 @@
 <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="/css/main.css">
+<!-- <link type="text/css" rel="stylesheet" href="/css/dragDrop.css"> -->
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -229,110 +231,154 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<div id="dragDrop" class="container">
+		<table border="1" cellspacing="1"
+			class="table table-striped table-bordered  table-hovered">
+			<thead>
+				<c:forEach items="${statuses}" var="status">
+					<th>${status}</th>
+				</c:forEach>
+			</thead>
+
+			<tbody>
+				<c:forEach items="${sprint.tasks}" var="task">
+					<c:set var="draggable_id" value="draggable_id_${task.status}"/>	
+						
+					<c:choose>
+						<c:when test="${task.status eq 'NOT_STARTED'}">
+							<tr id ="1">
+								<td id="1_1_${draggable_id}" class="drop">
+									<div id = "${draggable_id}" class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
+
+								<td id="1_2_${draggable_id}" class="drop"></td>
+								<td id="1_3_${draggable_id}" class="drop"></td>
+								<td id="1_4_${draggable_id}" class="drop"></td>
+								<td id="1_5_${draggable_id}" class="drop"> </td>
+								<td id="1_6_${draggable_id}" class="drop"></td>
+							</tr>
+						</c:when>
+
+						<c:when test="${task.status eq 'ANALYSED'}">
+							<tr id="2">
+								<td id="2_1_${draggable_id}" class="drop"></td>
+								<td id="2_2_${draggable_id}" class="drop">
+									<div class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
+
+								<td id="2_3_${draggable_id}" class="drop"></td>
+								<td id="2_4_${draggable_id}" class="drop"></td>
+								<td id="2_5_${draggable_id}" class="drop"></td>
+								<td id="2_6_${draggable_id}" class="drop"></td>
+							</tr>
+						</c:when>
+
+						<c:when test="${task.status eq 'IN_PROGRESS'}">
+							<tr id="3">
+								<td id="3_1_${draggable_id}" class="drop"></td>
+								<td id="3_2_${draggable_id}" class="drop"></td>
+								<td id="3_3_${draggable_id}" class="drop">
+									<div class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
+
+								<td id="3_4_${draggable_id}" class="drop"></td>
+								<td id="3_5_${draggable_id}" class="drop"></td>
+								<td id="3_6_${draggable_id}" class="drop"></td>
+							</tr>
+						</c:when>
 
 
-	<div id = "dragdiv" class="container">
-		<div class="col-md-12">
-			<div id ="scrumboard" class="row vdivide">
-				<div id="not_started" name="sdf" class="col-sm-2 text-center">
-					<h4>Not started</h4>
-					
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'NOT_STARTED'}">
-							
-							
-							<div class="thumbnail">
-								<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
+						<c:when test="${task.status eq 'COMPLETED'}">
+							<tr id="4">
+								<td id="4_1_${draggable_id}" class="drop"></td>
+								<td id="4_2_${draggable_id}" class="drop"></td>
+								<td id="4_3_${draggable_id}" class="drop"></td>
 
-				<div id="analysed" class="col-sm-2 text-center">
-					<h4>Analysed</h4>
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'ANALYSED'}">
-							<div class="thumbnail">
-								<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-				
-				<div id="in progress" class="col-sm-2 text-center">
-					<h4>In Progress</h4>
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'IN_PROGRESS'}">
-							<div class="thumbnail">
-								<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-				<div id="completed" class="col-sm-2 text-center">
-					<h4>Completed</h4>
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'COMPLETED'}">
-							<div class="thumbnail">
-								<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-				<div id="verified" class="col-sm-2 text-center">
-					<h4>Verified</h4>
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'VERIFIED'}">
-							<div class="thumbnail">
-							<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-				
-				<div id="integrated" class="col-sm-2 text-center">
-					<h4>Integrated</h4>
-					<c:forEach items="${sprint.tasks}" var="task">
-						<c:if test="${task.status eq 'INTEGRATED'}">
-							<div class="thumbnail">
-								<p>
-									<b>Task name:</b> ${task.taskName}
-								</p>
-								<p>
-									<b>task Id:</b> ${task.id}
-								</p>
-							</div>
-						</c:if>
-					</c:forEach>
-				</div>
-			</div>
+								<td id="4_4_${draggable_id}" class="drop">
+									<div class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
 
-		</div>
+								<td id="4_5_${draggable_id}" class="drop"></td>
+								<td id="4_6_${draggable_id}" class="drop"></td>
+							</tr>
+						</c:when>
+
+						<c:when test="${task.status eq 'VERIFIED'}">
+							<tr id="5">
+								<td id="5_1_${draggable_id}" class="drop"></td>
+								<td id="5_2_${draggable_id}" class="drop"></td>
+								<td id="5_3_${draggable_id}" class="drop"></td>
+								<td id="5_4_${draggable_id}" class="drop">
+									<div class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
+
+								<td id="5_5_${draggable_id}" class="drop"></td>
+								<td id="5_6_${draggable_id}" class="drop"></td>
+
+							</tr>
+						</c:when>
+
+						<c:when test="${task.status eq 'INTEGRATED'}">
+							<tr id="6">
+								<td id="6_1_${draggable_id}" class="drop"></td>
+								<td id="6_2_${draggable_id}" class="drop"></td>
+								<td id="6_3_${draggable_id}" class="drop"></td>
+								<td id="6_4_${draggable_id}" class="drop">
+									<div class="thumbnail drag">
+										<p>
+											<b>Task name:</b> ${task.taskName}
+										</p>
+										<p>
+											<b>task Id:</b> ${task.id}
+										</p>
+									</div>
+								</td>
+
+								<td id="6_5_${draggable_id}" class="drop"></td>
+								<td id="6_6_${draggable_id}" class="drop"></td>
+							</tr>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 
 </body>

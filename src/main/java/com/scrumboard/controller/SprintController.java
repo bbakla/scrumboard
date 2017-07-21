@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.scrumboard.domain.enumeration.TaskStatus;
 import com.scrumboard.domain.model.Sprint;
 import com.scrumboard.domain.model.Task;
 import com.scrumboard.domain.model.Team;
@@ -49,6 +50,7 @@ public class SprintController {
 		model.addAttribute("sprint", team.getSprints());
 		model.addAttribute("project", team.getProject());
 		model.addAttribute("team", team);
+		model.addAttribute("statuses", TaskStatus.values());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(SPRINT_PAGE);
@@ -67,6 +69,7 @@ public class SprintController {
 		model.addAttribute("sprint", sprint);
 		model.addAttribute("project", sprint.getTeam().getProject());
 		model.addAttribute("team", sprint.getTeam());
+		model.addAttribute("statuses", TaskStatus.values());
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -115,6 +118,7 @@ public class SprintController {
 		model.addAttribute("project", projectRepoService.findTaskById(projectId));
 		model.addAttribute("sprint", sprint);
 		model.addAttribute("team", sprint.getTeam());
+		model.addAttribute("statuses", TaskStatus.values());
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
