@@ -244,13 +244,11 @@
 
 			<tbody>
 				<c:forEach items="${sprint.tasks}" var="task">
-					<c:set var="draggable_id" value="draggable_id_${task.status}"/>	
-						
 					<c:choose>
 						<c:when test="${task.status eq 'NOT_STARTED'}">
 							<tr id ="1">
-								<td id="1_1_${draggable_id}" class="drop">
-									<div id = "${draggable_id}" class="thumbnail drag">
+								<td id="1_1_${statuses[0]}" class="drop">
+									<div id = "${task.id}_${statuses[0]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -260,19 +258,19 @@
 									</div>
 								</td>
 
-								<td id="1_2_${draggable_id}" class="drop"></td>
-								<td id="1_3_${draggable_id}" class="drop"></td>
-								<td id="1_4_${draggable_id}" class="drop"></td>
-								<td id="1_5_${draggable_id}" class="drop"> </td>
-								<td id="1_6_${draggable_id}" class="drop"></td>
+								<td id="1_2_${statuses[1]}" class="drop"></td>
+								<td id="1_3_${statuses[2]}" class="drop"></td>
+								<td id="1_4_${statuses[3]}" class="drop"></td>
+								<td id="1_5_${statuses[4]}" class="drop"> </td>
+								<td id="1_6_${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'ANALYSED'}">
 							<tr id="2">
-								<td id="2_1_${draggable_id}" class="drop"></td>
-								<td id="2_2_${draggable_id}" class="drop">
-									<div class="thumbnail drag">
+								<td id="2_1_${statuses[0]}" class="drop"></td>
+								<td id="2_2_${statuses[1]}" class="drop">
+									<div id = "${task.id}_${statuses[1]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -282,19 +280,19 @@
 									</div>
 								</td>
 
-								<td id="2_3_${draggable_id}" class="drop"></td>
-								<td id="2_4_${draggable_id}" class="drop"></td>
-								<td id="2_5_${draggable_id}" class="drop"></td>
-								<td id="2_6_${draggable_id}" class="drop"></td>
+								<td id="2_3_${statuses[2]}" class="drop"></td>
+								<td id="2_4_${statuses[3]}" class="drop"></td>
+								<td id="2_5_${statuses[4]}" class="drop"></td>
+								<td id="2_6_${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'IN_PROGRESS'}">
 							<tr id="3">
-								<td id="3_1_${draggable_id}" class="drop"></td>
-								<td id="3_2_${draggable_id}" class="drop"></td>
-								<td id="3_3_${draggable_id}" class="drop">
-									<div class="thumbnail drag">
+								<td id="3_1_${statuses[0]}" class="drop"></td>
+								<td id="3_2_${statuses[1]}" class="drop"></td>
+								<td id="3_3_${statuses[2]}" class="drop">
+									<div id="${task.id}_${statuses[2]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -304,21 +302,20 @@
 									</div>
 								</td>
 
-								<td id="3_4_${draggable_id}" class="drop"></td>
-								<td id="3_5_${draggable_id}" class="drop"></td>
-								<td id="3_6_${draggable_id}" class="drop"></td>
+								<td id="3_4_${statuses[3]}" class="drop"></td>
+								<td id="3_5_${statuses[4]}" class="drop"></td>
+								<td id="3_6_${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 
 						<c:when test="${task.status eq 'COMPLETED'}">
 							<tr id="4">
-								<td id="4_1_${draggable_id}" class="drop"></td>
-								<td id="4_2_${draggable_id}" class="drop"></td>
-								<td id="4_3_${draggable_id}" class="drop"></td>
-
-								<td id="4_4_${draggable_id}" class="drop">
-									<div class="thumbnail drag">
+								<td id="4_1_${statuses[0]}" class="drop"></td>
+								<td id="4_2_${statuses[1]}" class="drop"></td>
+								<td id="4_3_${statuses[2]}" class="drop"></td>
+								<td id="4_4_${statuses[3]}" class="drop">
+									<div id="${task.id}_${statuses[3]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -328,18 +325,19 @@
 									</div>
 								</td>
 
-								<td id="4_5_${draggable_id}" class="drop"></td>
-								<td id="4_6_${draggable_id}" class="drop"></td>
+								<td id="4_5_${statuses[4]}" class="drop"></td>
+								<td id="4_6_${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'VERIFIED'}">
 							<tr id="5">
-								<td id="5_1_${draggable_id}" class="drop"></td>
-								<td id="5_2_${draggable_id}" class="drop"></td>
-								<td id="5_3_${draggable_id}" class="drop"></td>
-								<td id="5_4_${draggable_id}" class="drop">
-									<div class="thumbnail drag">
+								<td id="5_1_${statuses[0]}" class="drop"></td>
+								<td id="5_2_${statuses[1]}" class="drop"></td>
+								<td id="5_3_${statuses[2]}" class="drop"></td>
+								<td id="5_4_${statuses[3]}" class="drop"></td>
+								<td id="5_5_${statuses[4]}" class="drop">
+									<div id="${task.id}_${statuses[4]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -348,20 +346,21 @@
 										</p>
 									</div>
 								</td>
-
-								<td id="5_5_${draggable_id}" class="drop"></td>
-								<td id="5_6_${draggable_id}" class="drop"></td>
+									
+								<td id="5_6_${statuses[5]}" class="drop"></td>
 
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'INTEGRATED'}">
 							<tr id="6">
-								<td id="6_1_${draggable_id}" class="drop"></td>
-								<td id="6_2_${draggable_id}" class="drop"></td>
-								<td id="6_3_${draggable_id}" class="drop"></td>
-								<td id="6_4_${draggable_id}" class="drop">
-									<div class="thumbnail drag">
+								<td id="6_1_${statuses[0]}" class="drop"></td>
+								<td id="6_2_${statuses[1]}" class="drop"></td>
+								<td id="6_3_${statuses[2]}" class="drop"></td>
+								<td id="6_4_${statuses[3]}" class="drop"></td>
+								<td id="6_5_${statuses[4]}" class="drop"></td>
+								<td id="6_6_${statuses[5]}" class="drop">
+									<div id="${task.id}_${statuses[5]}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -370,9 +369,6 @@
 										</p>
 									</div>
 								</td>
-
-								<td id="6_5_${draggable_id}" class="drop"></td>
-								<td id="6_6_${draggable_id}" class="drop"></td>
 							</tr>
 						</c:when>
 					</c:choose>
