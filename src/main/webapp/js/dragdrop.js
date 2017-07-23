@@ -1,7 +1,4 @@
 $(document).ready(function() {    
-// drag and drop table cell "div" elements into and out of "td" elements
-
-    var inputElement; // for entry into mysql database
     
     $('.drag').draggable({
         cursor: "move",
@@ -11,8 +8,7 @@ $(document).ready(function() {
                 
         start: function (event, ui) {
         //store the id and element of the input td when dragging div away, to use in php later
-            inputElement=$(this).closest('td').find('div');
-            console.log("id is " + $(this).closest('td').find('div').attr('id'));
+            var inputElement=$(this).closest('td').find('div');
         }        
     });
     
@@ -34,10 +30,12 @@ $(document).ready(function() {
           var dropped=$(this);
           
           if(dropped.has(".ui-draggable").length == 0) {
+        	  var droppedId = dropped.attr("id").split("-");
+              var newDraggedId = dragged.attr("id").split("-")[0] + "-" + droppedId[2];
+              dragged.attr("id", newDraggedId);
+              
         	  dropped.append(dragged);
           }
-          
-        
            
           //place draggable neatly in droppable; this works
           ui.draggable.position({

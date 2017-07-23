@@ -246,9 +246,10 @@
 				<c:forEach items="${sprint.tasks}" var="task">
 					<c:choose>
 						<c:when test="${task.status eq 'NOT_STARTED'}">
+							<c:set var="taskStatus" value="${statuses[0]}"/>	
 							<tr id ="1">
-								<td id="1_1_${statuses[0]}" class="drop">
-									<div id = "${task.id}_${statuses[0]}" class="thumbnail drag">
+								<td id="1-1-${taskStatus}" class="drop">
+									<div id = "${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -258,19 +259,20 @@
 									</div>
 								</td>
 
-								<td id="1_2_${statuses[1]}" class="drop"></td>
-								<td id="1_3_${statuses[2]}" class="drop"></td>
-								<td id="1_4_${statuses[3]}" class="drop"></td>
-								<td id="1_5_${statuses[4]}" class="drop"> </td>
-								<td id="1_6_${statuses[5]}" class="drop"></td>
+								<td id="1-2-${statuses[1]}" class="drop"></td>
+								<td id="1-3-${statuses[2]}" class="drop"></td>
+								<td id="1-4-${statuses[3]}" class="drop"></td>
+								<td id="1-5-${statuses[4]}" class="drop"> </td>
+								<td id="1-6-${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'ANALYSED'}">
+							<c:set var="taskStatus" value="${statuses[1]}"/>	
 							<tr id="2">
-								<td id="2_1_${statuses[0]}" class="drop"></td>
-								<td id="2_2_${statuses[1]}" class="drop">
-									<div id = "${task.id}_${statuses[1]}" class="thumbnail drag">
+								<td id="2-1-${statuses[0]}" class="drop"></td>
+								<td id="2-2-${taskStatus}" class="drop">
+									<div id = "${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -280,19 +282,20 @@
 									</div>
 								</td>
 
-								<td id="2_3_${statuses[2]}" class="drop"></td>
-								<td id="2_4_${statuses[3]}" class="drop"></td>
-								<td id="2_5_${statuses[4]}" class="drop"></td>
-								<td id="2_6_${statuses[5]}" class="drop"></td>
+								<td id="2-3-${statuses[2]}" class="drop"></td>
+								<td id="2-4-${statuses[3]}" class="drop"></td>
+								<td id="2-5-${statuses[4]}" class="drop"></td>
+								<td id="2-6-${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
-						<c:when test="${task.status eq 'IN_PROGRESS'}">
+						<c:when test="${task.status eq 'IN_PROGRESS'}">	
+							<c:set var="taskStatus" value="${statuses[2]}"/>	
 							<tr id="3">
-								<td id="3_1_${statuses[0]}" class="drop"></td>
-								<td id="3_2_${statuses[1]}" class="drop"></td>
-								<td id="3_3_${statuses[2]}" class="drop">
-									<div id="${task.id}_${statuses[2]}" class="thumbnail drag">
+								<td id="3-1-${statuses[0]}" class="drop"></td>
+								<td id="3-2-${statuses[1]}" class="drop"></td>
+								<td id="3-3-${taskStatus}" class="drop">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -302,20 +305,21 @@
 									</div>
 								</td>
 
-								<td id="3_4_${statuses[3]}" class="drop"></td>
-								<td id="3_5_${statuses[4]}" class="drop"></td>
-								<td id="3_6_${statuses[5]}" class="drop"></td>
+								<td id="3-4-${statuses[3]}" class="drop"></td>
+								<td id="3-5-${statuses[4]}" class="drop"></td>
+								<td id="3-6-${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 
 						<c:when test="${task.status eq 'COMPLETED'}">
+							<c:set var="taskStatus" value="${statuses[3]}"/>
 							<tr id="4">
-								<td id="4_1_${statuses[0]}" class="drop"></td>
-								<td id="4_2_${statuses[1]}" class="drop"></td>
-								<td id="4_3_${statuses[2]}" class="drop"></td>
-								<td id="4_4_${statuses[3]}" class="drop">
-									<div id="${task.id}_${statuses[3]}" class="thumbnail drag">
+								<td id="4-1-${statuses[0]}" class="drop"></td>
+								<td id="4-2-${statuses[1]}" class="drop"></td>
+								<td id="4-3-${statuses[2]}" class="drop"></td>
+								<td id="4-4-${taskStatus}" class="drop">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -325,19 +329,20 @@
 									</div>
 								</td>
 
-								<td id="4_5_${statuses[4]}" class="drop"></td>
-								<td id="4_6_${statuses[5]}" class="drop"></td>
+								<td id="4-5-${statuses[4]}" class="drop"></td>
+								<td id="4-6-${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'VERIFIED'}">
+							<c:set var="taskStatus" value="${statuses[4]}"/>
 							<tr id="5">
-								<td id="5_1_${statuses[0]}" class="drop"></td>
-								<td id="5_2_${statuses[1]}" class="drop"></td>
-								<td id="5_3_${statuses[2]}" class="drop"></td>
-								<td id="5_4_${statuses[3]}" class="drop"></td>
-								<td id="5_5_${statuses[4]}" class="drop">
-									<div id="${task.id}_${statuses[4]}" class="thumbnail drag">
+								<td id="5-1-${statuses[0]}" class="drop"></td>
+								<td id="5-2-${statuses[1]}" class="drop"></td>
+								<td id="5-3-${statuses[2]}" class="drop"></td>
+								<td id="5-4-${statuses[3]}" class="drop"></td>
+								<td id="5-5-${taskStatus}" class="drop">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -346,21 +351,20 @@
 										</p>
 									</div>
 								</td>
-									
-								<td id="5_6_${statuses[5]}" class="drop"></td>
-
+								<td id="5-6-${statuses[5]}" class="drop"></td>
 							</tr>
 						</c:when>
 
 						<c:when test="${task.status eq 'INTEGRATED'}">
+							<c:set var="taskStatus" value="${statuses[5]}"/>
 							<tr id="6">
-								<td id="6_1_${statuses[0]}" class="drop"></td>
-								<td id="6_2_${statuses[1]}" class="drop"></td>
-								<td id="6_3_${statuses[2]}" class="drop"></td>
-								<td id="6_4_${statuses[3]}" class="drop"></td>
-								<td id="6_5_${statuses[4]}" class="drop"></td>
-								<td id="6_6_${statuses[5]}" class="drop">
-									<div id="${task.id}_${statuses[5]}" class="thumbnail drag">
+								<td id="6-1-${statuses[0]}" class="drop"></td>
+								<td id="6-2-${statuses[1]}" class="drop"></td>
+								<td id="6-3-${statuses[2]}" class="drop"></td>
+								<td id="6-4-${statuses[3]}" class="drop"></td>
+								<td id="6-5-${statuses[4]}" class="drop"></td>
+								<td id="6-6-${taskStatus}" class="drop">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
