@@ -1,21 +1,45 @@
-{
-	margin-top: 1em;
-}
+/* { */
+/* 	margin-top: 1em; */
+/* } */
 
-table {
-	border: 1px solid #333333; /*dark grey*/
-	width: 100%;
-	color: #333333; /*dark grey*/
-	background-color: #cccccc; /*light grey*/
-}
+/* table { */
+/* 	border: 1px solid #333333; dark grey */
+/* 	width: 100%; */
+/* 	color: #333333; dark grey */
+/* 	background-color: #cccccc; light grey */
+/* } */
 	
-tr {
-	background-color: rgb(107,206,214); /*light turquoise*/
+/* tr { */
+/* 	background-color: rgb(107,206,214); light turquoise */
+/* } */
+
+/* td { */
+/* 	background-color: rgb(226,248,248); very very light turquoise */
+/* } */
+/* div { */
+/* 	background-color: transparent); very very light turquoise */
+/* } */
+
+.status_not_started {
+	background:grey;
 }
 
-td {
-	background-color: rgb(226,248,248); /*very very light turquoise*/
+.status_analysed {
+	background: yellow;
 }
-div {
-	background-color: transparent); /*very very light turquoise*/
+
+.status_in_progress {
+	background: green;
+}
+
+.status_completed {
+	background: blue;
+}
+
+.status_verified {
+	background: red;
+}
+
+.status_integrated {
+	background: black;
 }

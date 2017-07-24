@@ -16,36 +16,55 @@ $(document).ready(function() {
       accept: ".drag",
       tolerance: "pointer",
       snap: ".drop",
-      
+      revert: "invalid",
       drop: function (event, ui) {
         //ui: div element being dragged
         //this: td element being dropped into
 
-        if ($(this).hasClass('hasClass')) { 
-          ui.draggable.draggable('option','revert',true);
-          return false;  
-
-        } else { 
           var dragged =$(ui.draggable);
           var dropped=$(this);
           
-          if(dropped.has(".ui-draggable").length == 0) {
+          if(dropped.has(".ui-draggable").length != 0) {
+        	  dragged.draggable({ revert: "valid" });
+        	  return;
+          }
         	  var droppedId = dropped.attr("id").split("-");
-              var newDraggedId = dragged.attr("id").split("-")[0] + "-" + droppedId[2];
+        	  
+        	  var status = droppedId[2];
+        	  
+              var newDraggedId = dragged.attr("id").split("-")[0] + "-" + status;
               dragged.attr("id", newDraggedId);
               
+              var classes = dragged.attr("class").split(" ");
+              
+              $.each(classes, function(index, item) {
+            	    if (item.includes('status_')) {
+            	        dragged.removeClass(item);
+            	    }
+            	});
+              
+              if(status == "NOT_STARTED") {
+            	  dragged.addClass("status_not_started");
+              } else if (status == "ANALYSED") {
+            	  dragged.addClass("status_analysed");
+              } else if (status == "IN_PROGRESS") {
+            	  dragged.addClass("status_in_progress")
+              } else if (status == "COMPLETED") {
+            	  dragged.addClass("status_completed");
+              } else if (status == "VERIFIED") {
+            	  dragged.addClass("status_verified");
+              } else if (status == "INTEGRATED") {
+            	  dragged.addClass("status_integrated");
+              }
+              
         	  dropped.append(dragged);
-          }
            
-          //place draggable neatly in droppable; this works
           ui.draggable.position({
             of: $(this),
             my: 'center center', 
             at: 'center center'
           });
         
-//          inputElement.val(newVal);
-        } 
       }
     });
 });

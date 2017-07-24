@@ -7,7 +7,6 @@ ENDPOINTS
 
 TO BE DONE
 -----------------------------------------
-* changed states will be reflected by the colors as well.
 * updated kanbanboard will be transferred to the backend.
 * tasks will have parent-child relationship 
 

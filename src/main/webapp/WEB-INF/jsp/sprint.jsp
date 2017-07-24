@@ -11,7 +11,7 @@
 <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="/css/main.css">
-<!-- <link type="text/css" rel="stylesheet" href="/css/dragDrop.css"> -->
+<link type="text/css" rel="stylesheet" href="/css/dragDrop.css">
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -249,7 +249,7 @@
 							<c:set var="taskStatus" value="${statuses[0]}"/>	
 							<tr id ="1">
 								<td id="1-1-${taskStatus}" class="drop">
-									<div id = "${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id = "${task.id}-${taskStatus}" class="thumbnail drag status_not_started">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -272,7 +272,7 @@
 							<tr id="2">
 								<td id="2-1-${statuses[0]}" class="drop"></td>
 								<td id="2-2-${taskStatus}" class="drop">
-									<div id = "${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id = "${task.id}-${taskStatus}" class="thumbnail drag status_analysed">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -295,7 +295,7 @@
 								<td id="3-1-${statuses[0]}" class="drop"></td>
 								<td id="3-2-${statuses[1]}" class="drop"></td>
 								<td id="3-3-${taskStatus}" class="drop">
-									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag status_in_progress">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -319,7 +319,7 @@
 								<td id="4-2-${statuses[1]}" class="drop"></td>
 								<td id="4-3-${statuses[2]}" class="drop"></td>
 								<td id="4-4-${taskStatus}" class="drop">
-									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag status_completed">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -342,7 +342,7 @@
 								<td id="5-3-${statuses[2]}" class="drop"></td>
 								<td id="5-4-${statuses[3]}" class="drop"></td>
 								<td id="5-5-${taskStatus}" class="drop">
-									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag status_integrated">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
@@ -364,7 +364,7 @@
 								<td id="6-4-${statuses[3]}" class="drop"></td>
 								<td id="6-5-${statuses[4]}" class="drop"></td>
 								<td id="6-6-${taskStatus}" class="drop">
-									<div id="${task.id}-${taskStatus}" class="thumbnail drag">
+									<div id="${task.id}-${taskStatus}" class="thumbnail drag status_integrated">
 										<p>
 											<b>Task name:</b> ${task.taskName}
 										</p>
