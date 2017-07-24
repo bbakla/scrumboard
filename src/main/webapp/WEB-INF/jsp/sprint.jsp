@@ -19,7 +19,31 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dragdrop.js"></script>
 
+<script type="text/javascript">
+$(document)
+.ready(function() {
+	$('#kanbanBoard').submit(
+			function(event) { 	
+				
+				
+				$.ajax({
+					url: "${pageContext.request.contextPath}/plan/week",
+					headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+	        					},
+					data : JSON.stringify({
+					dto : week
+						}),
+					type : "POST",
+					dataType : 'json',
 
+										});
+			event.preventDefault();
+			});
+});
+
+</script>
 
 <title>Project page</title>
 </head>
@@ -232,8 +256,10 @@
 		</div>
 	</div>
 	
-	
+	<form id="kanbanBoard" method ="post">
 	<div id="dragDrop" class="container">
+		<button type="submit" class="btn btn-primary btn-md btn-block">Save</button>
+		<br/>
 		<table border="1" cellspacing="1"
 			class="table table-striped table-bordered  table-hovered">
 			<thead>
@@ -380,6 +406,7 @@
 			</tbody>
 		</table>
 	</div>
+	</form>
 
 </body>
 </html>
